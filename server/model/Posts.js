@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
   selectedFile: { type: String, required: true },
   likeCount: { type: Number, default: 0 },
   createAt: { type: Date, default: new Date() },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
 });
 const Posts = mongoose.model("PostMessage", postSchema);
 export default Posts;
