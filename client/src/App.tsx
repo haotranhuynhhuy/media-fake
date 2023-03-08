@@ -1,16 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import LoginPage from "./pages/LoginPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <p className="read-the-docs text-4xl underline">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <BrowserRouter>
+      <LoginPage />
+    </BrowserRouter>
   );
 }
 
