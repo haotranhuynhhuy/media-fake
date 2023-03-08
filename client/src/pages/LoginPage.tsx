@@ -15,14 +15,13 @@ const LoginPage = () => {
       ["bg-yellow-600"]: active,
     }
   );
-
   return (
     <div className={backgroundColor}>
       <div className=" relative w-[800px] h-[500px] m-5">
         <div className="orangeBG absolute top-[40px] flex justify-center items-center w-full h-[420px]">
           <div className="box flex justify-center items-center flex-col">
             <p className="text-xl font-bold mb-3 text-white">
-              Already has An Account?
+              Already Has An Account?
             </p>
             <button
               className=" px-5 py-3 bg-white border-none font-bold text-base cursor-pointer"
@@ -33,7 +32,7 @@ const LoginPage = () => {
           </div>
           <div className="box flex justify-center items-center flex-col">
             <p className="text-xl font-bold mb-3 text-white">
-              Already has An Account?
+              Create An Account?
             </p>
             <button
               className=" px-5 py-2 bg-white border-none font-bold text-base cursor-pointer"
@@ -44,7 +43,12 @@ const LoginPage = () => {
           </div>
         </div>
         <div className={formBox}>
-          {active ? <LoginForm /> : <RegisterForm />}
+          <div className={"form signInForm"}>
+            <LoginForm />
+          </div>
+          <div className={"form signUpForm"}>
+            <RegisterForm />
+          </div>
         </div>
       </div>
     </div>
