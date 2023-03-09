@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 .orangeBG {
     box-shadow: 0 5px 45px rgba(0, 0, 0, .15);
     background: rgba(255, 255, 255, .2);

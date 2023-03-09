@@ -14,13 +14,13 @@ module.exports = {
           DEFAULT: "#FFFFFF",
         },
         primary: {
-          DEFAULT: "#5DAD72",
+          DEFAULT: "#FAAA01",
         },
         secondary: {
-          DEFAULT: "#f1b45b",
+          DEFAULT: "#F17228",
         },
         tertiary: {
-          DEFAULT: "#A2A9B2",
+          DEFAULT: "#fce3d4",
         },
         success: {
           DEFAULT: "#28c76f",
