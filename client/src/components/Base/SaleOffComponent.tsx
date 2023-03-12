@@ -3,7 +3,7 @@ import { SaleOffProps } from "../../types";
 
 const SaleOffComponent = ({ data }: SaleOffProps) => {
   return (
-    <div>
+    <div className="w-full">
       <div className="relative">
         <img src={data.src} alt={data.alt} className="rounded-2xl" />
         {data.saleOff && (
