@@ -15,3 +15,11 @@ export interface SaleOffProps {
     remaining: string;
   };
 }
+export interface HowComponentProps {
+  data: {
+    icon: string;
+    title: string;
+    desc: string;
+    alt: string;
+  };
+}
