@@ -1,7 +1,9 @@
 import React from "react";
 import { SaleOffProps } from "../../types";
-
-const SaleOffComponent = ({ data }: SaleOffProps) => {
+interface SaleOff {
+  data: SaleOffProps;
+}
+const SaleOffComponent = ({ data }: SaleOff) => {
   return (
     <div className="w-full">
       <div className="relative">

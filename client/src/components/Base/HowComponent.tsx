@@ -1,6 +1,9 @@
 import { HowComponentProps } from "../../types";
 
-const HowComponent = ({ data }: HowComponentProps) => {
+interface HowProps {
+  data: HowComponentProps;
+}
+const HowComponent = ({ data }: HowProps) => {
   return (
     <div className="flex flex-col items-center">
       <img src={data.icon} alt={data.alt} />

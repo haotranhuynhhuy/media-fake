@@ -4,7 +4,7 @@ import location from "../icons/location.svg";
 import order from "../icons/order.svg";
 import payment from "../icons/payment.svg";
 
-export const howItWork = [
+export const howItWork: HowComponentProps[] = [
   {
     alt: "enjoy",
     icon: enjoy,

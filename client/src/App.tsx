@@ -5,6 +5,8 @@ import SaleOffComponent from "./components/Base/SaleOffComponent";
 import { saleOffData } from "./assets/data/SaleOffData";
 import HowComponent from "./components/Base/HowComponent";
 import { howItWork } from "./assets/data/HowItWorkData";
+import { popularData } from "./assets/data/PopularData";
+import PopularItem from "./components/Base/PopularItem";
 
 function App() {
   return (
@@ -17,6 +19,11 @@ function App() {
       <div className="grid grid-flow-row sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 md:gap-10 gap-10">
         {howItWork.map((item) => {
           return <HowComponent data={item} />;
+        })}
+      </div>
+      <div className="grid grid-flow-row sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 md:gap-10 gap-10">
+        {popularData.map((item) => {
+          return <PopularItem data={item} />;
         })}
       </div>
     </BrowserRouter>
