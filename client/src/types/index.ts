@@ -26,3 +26,12 @@ export interface PopularProps {
   location: string;
   price: string;
 }
+export interface RestaurantProps {
+  src: string;
+  alt: string;
+  title: string;
+  star: string;
+  logo: string;
+  saleOff: string;
+  isOpen: boolean;
+}

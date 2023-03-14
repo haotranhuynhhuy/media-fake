@@ -23,7 +23,7 @@ module.exports = {
           DEFAULT: "#fce3d4",
         },
         success: {
-          DEFAULT: "#28c76f",
+          DEFAULT: "#79B93C",
         },
         danger: {
           DEFAULT: "#ea5455",
@@ -36,6 +36,12 @@ module.exports = {
         },
         dark: {
           DEFAULT: "#4b4b4b",
+        },
+        dangerBtn: {
+          DEFAULT: "rgba(241, 114, 40, 0.2);",
+        },
+        successBtn: {
+          DEFAULT: "rgba(121, 185, 60, 0.2);",
         },
       },
     },
