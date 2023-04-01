@@ -6,24 +6,20 @@ const UserSchema = new Schema(
   {
     fullname: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
-      required: true,
     },
     avatar: {
       type: String,
-      default: require("../assets/user-default.jpeg"),
+      default: "",
     },
     username: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     role: { type: String, default: "user" },
     gender: { type: String, default: "male" },
