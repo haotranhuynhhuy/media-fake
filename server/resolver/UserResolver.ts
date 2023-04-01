@@ -2,6 +2,7 @@ import { UserInputError } from "apollo-server-express";
 import User from "../model/User.js";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import { UserType } from "../types/index.js";
 
 const userResolvers = {
   Query: {
@@ -41,7 +42,7 @@ const userResolvers = {
     },
     login: async (_, args) => {
       const { username, password } = args;
-      const newUser = await User.findOne({ username });
+      const newUser = await User.findOne<UserType>({ username });
       //check username exist
       if (!newUser) return new UserInputError("Username or password incorrect");
       //check password
