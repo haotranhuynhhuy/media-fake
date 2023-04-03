@@ -27,7 +27,7 @@ const userResolvers = {
       await newUser.save();
 
       //return token
-      const accessToken = jwt.sign(
+      const token = jwt.sign(
         {
           userId: newUser._id,
         },
@@ -37,7 +37,7 @@ const userResolvers = {
         code: 200,
         user: newUser,
         message: "User registration successful",
-        accessToken,
+        token,
       };
     },
     login: async (_, args) => {
@@ -51,7 +51,7 @@ const userResolvers = {
         return new UserInputError("Username or password incorrect");
 
       //return token
-      const accessToken = jwt.sign(
+      const token = jwt.sign(
         {
           userId: newUser._id,
         },
@@ -62,7 +62,7 @@ const userResolvers = {
         code: 200,
         user: newUser,
         message: "User login successfully",
-        accessToken,
+        token,
       };
     },
   },

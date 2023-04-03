@@ -16,7 +16,7 @@ const typeDefs = gql`
     followers: [User]
     following: [User]
     saved: [User]
-    token: String!
+    token: String
   }
 
   type Post {
@@ -48,11 +48,14 @@ const typeDefs = gql`
 
   type Query {
     user(id: ID!): User
+    posts: [Post]
+    post(id: ID!): Post
   }
 
   type Mutation {
     register(username: String!, email: String!, password: String!): User!
     login(username: String!, password: String!): User!
+    createPost(content: String!, images: String): Post
   }
 `;
 export default typeDefs;
