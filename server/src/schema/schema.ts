@@ -53,9 +53,13 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(username: String!, email: String!, password: String!): User!
-    login(username: String!, password: String!): User!
-    createPost(content: String!, images: String): Post
+    register(username: String!, email: String!, password: String!): User
+    login(username: String!, password: String!): User
+    createPost(content: String!, images: String, userId: ID!): Post
+  }
+
+  type Subscription {
+    newPost: Post!
   }
 `;
 export default typeDefs;

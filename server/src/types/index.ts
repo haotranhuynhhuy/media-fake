@@ -1,5 +1,5 @@
 export interface UserType {
-  _id: string;
+  id: string;
   fullname: string;
   username: string;
   password: string;
@@ -14,4 +14,16 @@ export interface UserType {
   followers: Array<UserType>;
   following: Array<UserType>;
   saved: Array<UserType>;
+}
+
+export interface PostTypes {
+  id: string;
+  content: string;
+  images: Array<ImageTypes>;
+  user: UserType;
+  userId: string;
+}
+
+export interface ImageTypes {
+  url: string;
 }

@@ -1,5 +1,6 @@
 import { AuthenticationError } from "apollo-server-express";
 import jwt from "jsonwebtoken";
+import { UserType } from "../types";
 
 const verifyToken = (context) => {
   // context header
@@ -15,7 +16,7 @@ const verifyToken = (context) => {
 
   //All good
   try {
-    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const user: UserType = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     return user;
   } catch (error) {
     throw new AuthenticationError("Authorization header must be provided");

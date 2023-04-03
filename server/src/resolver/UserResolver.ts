@@ -29,7 +29,7 @@ const userResolvers = {
       //return token
       const token = jwt.sign(
         {
-          userId: newUser._id,
+          userId: newUser.id,
         },
         process.env.ACCESS_TOKEN_SECRET
       );
@@ -53,7 +53,7 @@ const userResolvers = {
       //return token
       const token = jwt.sign(
         {
-          userId: newUser._id,
+          userId: newUser.id,
         },
         process.env.ACCESS_TOKEN_SECRET
       );

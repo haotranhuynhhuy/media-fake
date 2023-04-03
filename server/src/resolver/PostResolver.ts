@@ -1,11 +1,30 @@
 import verifyToken from "../middleware/auth";
+import Post from "../model/Post";
+import { PostTypes } from "../types";
 
 const postResolvers = {
   Query: {},
   Mutation: {
-    createPost: async (_, args, context) => {
+    createPost: async (_, args: PostTypes, context) => {
       const user = verifyToken(context);
-      console.log(user);
+
+      const { content, images, userId } = args;
+      const newPost = new Post({
+        content,
+        images,
+        user: userId || user.id,
+      });
+      const post = await newPost.save();
+      context.pubsub.publish("NEW_POST", {
+        newPost: post,
+      });
+      return newPost;
+    },
+  },
+  Subscription: {
+    newPost: {
+      subscribe: async (_, __, context) =>
+        await context.pubsub.asyncIterator("NEW_POST"),
     },
   },
 };

@@ -5,20 +5,24 @@ import { ApolloServer } from "apollo-server-express";
 import typeDefs from "./schema/schema";
 import resolvers from "./resolver";
 import connectDB from "./connectDB/connectDB";
+import { PubSub } from "graphql-subscriptions";
+
 dotenv.config();
 const app = express();
-
 app.use(cors());
+
+const pubsub = new PubSub();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req, res }) => ({ req, res }),
+  context: ({ req }) => ({ req, pubsub }),
 });
-const apollo = async () => {
+
+const graphQL = async () => {
   await server.start();
   server.applyMiddleware({ app });
 };
-apollo();
+graphQL();
 
 const startServer = async () => {
   try {
