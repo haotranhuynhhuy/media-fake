@@ -58,6 +58,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): User
     createPost(content: String!, images: String, userId: ID!): Post
     deletePost(id: ID!): String
+    likePost(id: ID!): Post
   }
 
   type Subscription {

@@ -12,6 +12,9 @@ const userResolvers = {
   Post: {
     user: async (parent, _, __) => await User.findById(parent.userId),
   },
+  Like: {
+    user: async (parent, _, __) => await User.findById(parent),
+  },
   Mutation: {
     register: async (_, args) => {
       const { username, password, email } = args;

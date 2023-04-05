@@ -9,6 +9,9 @@ const resolvers = {
   Post: {
     ...userResolvers.Post,
   },
+  Like: {
+    ...userResolvers.Like,
+  },
   Mutation: {
     ...userResolvers.Mutation,
     ...postResolvers.Mutation,

@@ -1,7 +1,7 @@
 import verifyToken from "../middleware/auth";
 import Post from "../model/Post";
-import User from "../model/User";
-import { PostTypes, UserType } from "../types";
+import { PostTypes } from "../types";
+import mongoose from "mongoose";
 
 const postResolvers = {
   Query: {
@@ -53,6 +53,27 @@ const postResolvers = {
         } else {
           throw new Error("Post not found");
         }
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    likePost: async (_, args: PostTypes, context) => {
+      try {
+        const user = verifyToken(context);
+        const post = await Post.findById(args.id);
+        if (post) {
+          if (post.likes.find((like) => like._id.toString() === user.id)) {
+            //unlike the post when id of user is exist
+            post.likes = post.likes.filter(
+              (like) => like._id.toString() !== user.id
+            );
+          } else {
+            //like the post when id user is not exist
+            post.likes.push(new mongoose.Types.ObjectId(user.id));
+          }
+        }
+        await post.save();
+        return post;
       } catch (error) {
         throw new Error(error);
       }
