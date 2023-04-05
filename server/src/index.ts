@@ -1,22 +1,28 @@
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import connectDB from "./connectDB/connectDB.js";
 import { ApolloServer } from "apollo-server-express";
-import typeDefs from "./schema/schema.js";
-import resolvers from "./resolver/index.js";
+import typeDefs from "./schema/schema";
+import resolvers from "./resolver";
+import connectDB from "./connectDB/connectDB";
+import { PubSub } from "graphql-subscriptions";
 
 dotenv.config();
 const app = express();
-
 app.use(cors());
+
+const pubsub = new PubSub();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => ({ req, pubsub }),
 });
 
-await server.start();
-server.applyMiddleware({ app });
+const graphQL = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+};
+graphQL();
 
 const startServer = async () => {
   try {
