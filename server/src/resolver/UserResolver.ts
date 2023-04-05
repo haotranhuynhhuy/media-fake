@@ -6,7 +6,11 @@ import { UserType } from "../types";
 
 const userResolvers = {
   Query: {
-    user: async (parent, args) => await User.findById(args.id),
+    user: async (_, args) => await User.findById(args.id),
+  },
+  //Query 'user' in 'Post' parent
+  Post: {
+    user: async (parent, _, __) => await User.findById(parent.userId),
   },
   Mutation: {
     register: async (_, args) => {
@@ -29,7 +33,7 @@ const userResolvers = {
       //return token
       const token = jwt.sign(
         {
-          userId: newUser.id,
+          id: newUser.id,
         },
         process.env.ACCESS_TOKEN_SECRET
       );
@@ -53,7 +57,7 @@ const userResolvers = {
       //return token
       const token = jwt.sign(
         {
-          userId: newUser.id,
+          id: newUser.id,
         },
         process.env.ACCESS_TOKEN_SECRET
       );
