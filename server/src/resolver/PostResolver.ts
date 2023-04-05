@@ -3,7 +3,17 @@ import Post from "../model/Post";
 import { PostTypes } from "../types";
 
 const postResolvers = {
-  Query: {},
+  Query: {
+    posts: async () => {
+      const posts = await Post.find().sort({ createAt: -1 });
+      return posts;
+    },
+    post: async (_, args, context) => {
+      const user = verifyToken(context);
+      console.log(user);
+      console.log(args.id);
+    },
+  },
   Mutation: {
     createPost: async (_, args: PostTypes, context) => {
       const user = verifyToken(context);
