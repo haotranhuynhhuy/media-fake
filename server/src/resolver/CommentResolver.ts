@@ -30,6 +30,24 @@ const commentResolver = {
         throw new Error(error);
       }
     },
+    deleteComment: async (_, args: CommentType, __) => {
+      try {
+        const comment = await Comment.findOneAndDelete({ _id: args.id });
+        console.log(comment);
+        if (comment) {
+          await Post.findOneAndUpdate(
+            { _id: comment.postId },
+            {
+              $pull: { comments: comment.id },
+            }
+          );
+          return "Comment is deleted successfully";
+        }
+        throw new Error("Post not found");
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
   },
 };
 export default commentResolver;
