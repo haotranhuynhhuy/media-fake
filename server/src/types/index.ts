@@ -22,8 +22,18 @@ export interface PostTypes {
   images: Array<ImageTypes>;
   user: UserType;
   userId: string;
+  likes: Object[];
+  comments: CommentType[];
 }
 
 export interface ImageTypes {
   url: string;
+}
+export interface CommentType {
+  id: string;
+  postId: string;
+  content: string;
+  tag: string[];
+  reply: string;
+  postUserId: string;
 }

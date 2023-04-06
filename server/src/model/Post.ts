@@ -9,7 +9,7 @@ const postSchema = new Schema(
       type: Array,
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comment" }],
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   },
   {

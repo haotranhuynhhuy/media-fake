@@ -2,21 +2,34 @@ import { UserInputError } from "apollo-server-express";
 import User from "../model/User";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { UserType } from "../types";
+import { PostTypes, UserType } from "../types";
+import Comment from "../model/Comment";
 
 const userResolvers = {
-  Query: {
-    user: async (_, args) => await User.findById(args.id),
-  },
   //Query 'user' in 'Post' parent
   Post: {
-    user: async (parent, _, __) => await User.findById(parent.userId),
+    user: async (parent: PostTypes) => await User.findById(parent.userId),
+    likeCount: async (parent: PostTypes) => await parent.likes.length,
+    commentCount: async (parent: PostTypes) => await parent.comments.length,
   },
   Like: {
-    user: async (parent, _, __) => await User.findById(parent),
+    user: async (parent: String) => {
+      const user = await User.findById(parent);
+      return user;
+    },
+  },
+  Comment: {
+    user: async (parent) => {
+      const comment = await Comment.findById(parent);
+      const user = await User.findById(comment.user);
+      return user;
+    },
+  },
+  Query: {
+    user: async (_, args: UserType) => await User.findById(args.id),
   },
   Mutation: {
-    register: async (_, args) => {
+    register: async (_, args: UserType) => {
       const { username, password, email } = args;
       //check username or email exist
       const user = await User.findOne({ username });
@@ -47,7 +60,7 @@ const userResolvers = {
         token,
       };
     },
-    login: async (_, args) => {
+    login: async (_, args: UserType) => {
       const { username, password } = args;
       const newUser = await User.findOne<UserType>({ username });
       //check username exist
