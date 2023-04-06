@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import verifyToken from "../middleware/auth";
 import Comment from "../model/Comment";
 import Post from "../model/Post";
@@ -44,6 +45,40 @@ const commentResolver = {
           return "Comment is deleted successfully";
         }
         throw new Error("Post not found");
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    likeComment: async (_, args: CommentType, context) => {
+      try {
+        const user = verifyToken(context);
+        const comment = await Comment.findById(args.id);
+        if (comment) {
+          if (comment.likes.find((like) => like._id.toString() === user.id)) {
+            //unlike
+            comment.likes = comment.likes.filter(
+              (like) => like._id.toString() !== user.id
+            );
+          } else {
+            //like post
+            comment.likes.push(new mongoose.Types.ObjectId(user.id));
+          }
+        }
+        await comment.save();
+        return "Your action successfully";
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    updateComment: async (_, args: CommentType, context) => {
+      try {
+        const user = verifyToken(context);
+        const { id, content } = args;
+        const comment = await Comment.findOneAndUpdate(
+          { _id: id, user: user.id },
+          { content }
+        );
+        return comment;
       } catch (error) {
         throw new Error(error);
       }
