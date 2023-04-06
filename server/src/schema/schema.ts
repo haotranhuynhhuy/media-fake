@@ -57,8 +57,12 @@ const typeDefs = gql`
     register(username: String!, email: String!, password: String!): User
     login(username: String!, password: String!): User
     createPost(content: String!, images: String, userId: ID!): Post
+
+    # ===> "id" here is "postId" <==== #
     deletePost(id: ID!): String
     likePost(id: ID!): Post
+
+    createComment(postId: ID!, content: String!, postUserId: ID!): Post
   }
 
   type Subscription {
