@@ -2,8 +2,10 @@ import { UserInputError } from "apollo-server-express";
 import User from "../model/User";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { PostTypes, UserType } from "../types";
+import { ContextType, PostTypes, UserType } from "../types";
 import Comment from "../model/Comment";
+import { createToken, sendRefreshToken } from "../util/auth";
+import verifyToken from "../middleware/auth";
 
 const userResolvers = {
   //Query 'user' in 'Post' parent
@@ -44,25 +46,17 @@ const userResolvers = {
         password: hashedPassword,
         email,
       });
-      await newUser.save();
+      const res: any = await newUser.save();
 
-      //return token
-      const token = jwt.sign(
-        {
-          id: newUser.id,
-        },
-        process.env.ACCESS_TOKEN_SECRET
-      );
+      //"._doc" is mongodb object to get all data
       return {
-        code: 200,
-        user: newUser,
-        message: "User registration successful",
-        token,
+        ...res._doc,
+        accessToken: createToken("accessToken", res),
       };
     },
-    login: async (_, args: UserType) => {
+    login: async (_, args: UserType, context: ContextType) => {
       const { username, password } = args;
-      const newUser = await User.findOne<UserType>({ username });
+      const newUser: any = await User.findOne<UserType>({ username });
       //check username exist
       if (!newUser) return new UserInputError("Username or password incorrect");
       //check password
@@ -71,19 +65,24 @@ const userResolvers = {
         return new UserInputError("Username or password incorrect");
 
       //return token
-      const token = jwt.sign(
-        {
-          id: newUser.id,
-        },
-        process.env.ACCESS_TOKEN_SECRET
-      );
+      sendRefreshToken(context.res, newUser);
 
+      //"._doc" is mongodb object to get all data
       return {
-        code: 200,
-        user: newUser,
-        message: "User login successfully",
-        token,
+        ...newUser._doc,
+        accessToken: createToken("accessToken", newUser),
       };
+    },
+    logout: async (_, args: UserType, context: ContextType) => {
+      const existingUser = await User.findOne({ _id: args.id });
+      if (!existingUser) return false;
+      context.res.clearCookie(process.env.REFRESH_TOKEN_COOKIE_NAME as string, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        path: "/refresh-token",
+      });
+      return true;
     },
   },
 };
