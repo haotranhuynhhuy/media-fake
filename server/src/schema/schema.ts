@@ -57,6 +57,7 @@ const typeDefs = gql`
     register(username: String!, email: String!, password: String!): User!
     login(username: String!, password: String!): User!
     createPost(content: String!, images: String, userId: ID!): Post!
+    logout(id: ID!): Boolean
 
     # ===> "id" here is "postId" <==== #
     deletePost(id: ID!): String

@@ -17,7 +17,7 @@ const main = async () => {
   await connectDB(process.env.MONGO_DB);
 
   const app = express();
-  app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+  app.use(cors());
   app.use(cookiesParser());
   app.use("/refresh-token", refreshTokenRouter);
 
@@ -28,7 +28,7 @@ const main = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+    // plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
     context: ({ req, res }) => {
       return { req, res, pubsub };
     },
@@ -37,7 +37,7 @@ const main = async () => {
   await server.start();
   server.applyMiddleware({
     app,
-    cors: { origin: "http://localhost:3000", credentials: true },
+    // cors: { origin: "http://localhost:3000", credentials: true },
   });
 
   const PORT = process.env.PORT || 4000;

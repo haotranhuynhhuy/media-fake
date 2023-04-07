@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { ContextType, PostTypes, UserType } from "../types";
 import Comment from "../model/Comment";
 import { createToken, sendRefreshToken } from "../util/auth";
+import verifyToken from "../middleware/auth";
 
 const userResolvers = {
   //Query 'user' in 'Post' parent
@@ -71,6 +72,17 @@ const userResolvers = {
         ...newUser._doc,
         accessToken: createToken("accessToken", newUser),
       };
+    },
+    logout: async (_, args: UserType, context: ContextType) => {
+      const existingUser = await User.findOne({ _id: args.id });
+      if (!existingUser) return false;
+      context.res.clearCookie(process.env.REFRESH_TOKEN_COOKIE_NAME as string, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        path: "/refresh-token",
+      });
+      return true;
     },
   },
 };
