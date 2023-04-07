@@ -9,7 +9,6 @@ import { PubSub } from "graphql-subscriptions";
 import cookiesParser from "cookie-parser";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core/dist/plugin/landingPage/graphqlPlayground";
 import verifyToken from "./middleware/auth";
-import { ContextType } from "./types";
 
 dotenv.config();
 const app = express();
@@ -21,13 +20,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
-  context: (context: ContextType) => {
-    const user = verifyToken(context);
-    if (user) {
-      return { context, pubsub };
-    } else {
-      throw new AuthenticationError("You have to login");
-    }
+  context: ({ req, res }) => {
+    return { req, res, pubsub };
   },
 });
 

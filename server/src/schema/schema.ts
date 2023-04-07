@@ -16,7 +16,7 @@ const typeDefs = gql`
     followers: [User]
     following: [User]
     saved: [User]
-    token: String
+    accessToken: String
   }
 
   type Post {
@@ -54,18 +54,18 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(username: String!, email: String!, password: String!): User
-    login(username: String!, password: String!): User
-    createPost(content: String!, images: String, userId: ID!): Post
+    register(username: String!, email: String!, password: String!): User!
+    login(username: String!, password: String!): User!
+    createPost(content: String!, images: String, userId: ID!): Post!
 
     # ===> "id" here is "postId" <==== #
     deletePost(id: ID!): String
-    likePost(id: ID!): Post
+    likePost(id: ID!): Post!
 
-    createComment(postId: ID!, content: String!, postUserId: ID!): Post
+    createComment(postId: ID!, content: String!, postUserId: ID!): Post!
     deleteComment(id: ID!): String
     likeComment(id: ID!): String
-    updateComment(id: ID!, content: String!): Comment
+    updateComment(id: ID!, content: String!): Comment!
   }
 
   type Subscription {
