@@ -47,6 +47,7 @@ const userResolvers = {
       });
       const res: any = await newUser.save();
 
+      //"._doc" is mongodb object to get all data
       return {
         ...res._doc,
         accessToken: createToken("accessToken", res),
@@ -65,6 +66,7 @@ const userResolvers = {
       //return token
       sendRefreshToken(context.res, newUser);
 
+      //"._doc" is mongodb object to get all data
       return {
         ...newUser._doc,
         accessToken: createToken("accessToken", newUser),
