@@ -1,8 +1,8 @@
 import { AuthenticationError } from "apollo-server-express";
 import jwt from "jsonwebtoken";
-import { UserType } from "../types";
+import { ContextType, UserType } from "../types";
 
-const verifyToken = (context) => {
+const verifyToken = (context: ContextType) => {
   // context header
   const authHeader = context.req.header("Authorization");
   const token = authHeader && authHeader.split(" ")[1];
