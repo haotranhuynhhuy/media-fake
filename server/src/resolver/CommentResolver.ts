@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 import verifyToken from "../middleware/auth";
 import Comment from "../model/Comment";
 import Post from "../model/Post";
-import { CommentType } from "../types";
+import { CommentType, ContextType } from "../types";
 
 const commentResolver = {
   Mutation: {
-    createComment: async (_, args: CommentType, context) => {
+    createComment: async (_, args: CommentType, context: ContextType) => {
       try {
         const { content, postUserId, postId } = args;
         const user = verifyToken(context);
@@ -31,7 +31,9 @@ const commentResolver = {
         throw new Error(error);
       }
     },
-    deleteComment: async (_, args: CommentType, __) => {
+    deleteComment: async (_, args: CommentType, context: ContextType) => {
+      const user = verifyToken(context);
+      if (!user) return null;
       try {
         const comment = await Comment.findOneAndDelete({ _id: args.id });
         console.log(comment);
@@ -49,7 +51,7 @@ const commentResolver = {
         throw new Error(error);
       }
     },
-    likeComment: async (_, args: CommentType, context) => {
+    likeComment: async (_, args: CommentType, context: ContextType) => {
       try {
         const user = verifyToken(context);
         const comment = await Comment.findById(args.id);
@@ -70,7 +72,7 @@ const commentResolver = {
         throw new Error(error);
       }
     },
-    updateComment: async (_, args: CommentType, context) => {
+    updateComment: async (_, args: CommentType, context: ContextType) => {
       try {
         const user = verifyToken(context);
         const { id, content } = args;
