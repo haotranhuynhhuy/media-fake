@@ -28,7 +28,11 @@ const userResolvers = {
     },
   },
   Query: {
-    user: async (_, args: UserType) => await User.findById(args.id),
+    user: async (_, args: UserType, context: ContextType) => {
+      const user = verifyToken(context);
+      if (!user) return null;
+      return await User.findById(args.id);
+    },
   },
   Mutation: {
     register: async (_, args: UserType) => {
@@ -73,16 +77,24 @@ const userResolvers = {
         accessToken: createToken("accessToken", newUser),
       };
     },
-    logout: async (_, args: UserType, context: ContextType) => {
-      const existingUser = await User.findOne({ _id: args.id });
-      if (!existingUser) return false;
-      context.res.clearCookie(process.env.REFRESH_TOKEN_COOKIE_NAME as string, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "lax",
-        path: "/refresh-token",
-      });
-      return true;
+    logout: async (_, __, context: ContextType) => {
+      const user = verifyToken(context);
+      const existingUser = await User.findOne({ _id: user.id });
+      if (!existingUser) {
+        return false;
+      } else {
+        await existingUser.save();
+        context.res.clearCookie(
+          process.env.REFRESH_TOKEN_COOKIE_NAME as string,
+          {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+            path: "/refresh-token",
+          }
+        );
+        return true;
+      }
     },
   },
 };
