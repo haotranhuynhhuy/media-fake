@@ -2,9 +2,11 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface Config {
   loginPath?: string;
-  accessToken: string;
-  oauth2: {
-    tokenType: "Bearer";
+  accessTokenStorageKey: string;
+  refreshTokenStorageKey: string;
+  refreshTokenEndpoint: string;
+  oauth20?: {
+    tokenType: "Basic" | "Bearer";
   };
 }
 export interface IAuthContext {
