@@ -4,7 +4,6 @@ import { Config } from "../types";
 export class HttpClient {
   oauth2: AxiosInstance;
   config: Config = {
-    loginPath: "/auth/login",
     accessToken: "access-token",
     oauth2: {
       tokenType: "Bearer",
