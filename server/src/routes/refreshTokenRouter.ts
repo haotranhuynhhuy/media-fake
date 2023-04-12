@@ -6,7 +6,7 @@ import { UserType } from "../types";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const refreshToken =
     req.cookies[process.env.REFRESH_TOKEN_COOKIE_NAME as string];
 
