@@ -15,3 +15,7 @@ export interface IAuthContext {
   checkAuth: () => Promise<void>;
   logoutClient: () => void;
 }
+export interface FormType {
+  username: string;
+  password: string;
+}

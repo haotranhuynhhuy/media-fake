@@ -55,6 +55,7 @@ const userResolvers = {
       //"._doc" is mongodb object to get all data
       return {
         ...res._doc,
+        id: res._id,
         accessToken: createToken("accessToken", res),
       };
     },
@@ -74,6 +75,7 @@ const userResolvers = {
       //"._doc" is mongodb object to get all data
       return {
         ...newUser._doc,
+        id: newUser._id,
         accessToken: createToken("accessToken", newUser),
       };
     },
