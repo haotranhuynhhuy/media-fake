@@ -1,12 +1,21 @@
 import React, { FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../utils/hooks";
 import { useMutation } from "@apollo/client";
 import { AUTH_LOGIN } from "../graphql/mutations/AuthMutation";
 import ButtonLoading from "./ButtonLoading";
+import { HttpClientMethod } from "../libs/axios";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "../features/auth/AuthSlice";
 
 const LoginForm = () => {
-  const [login, { data, loading, error }] = useMutation(AUTH_LOGIN);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, { loading, error }] = useMutation(AUTH_LOGIN, {
+    onCompleted: (data) => {
+      HttpClientMethod.setAccessToken(data.login.accessToken);
+    },
+  });
   const { value, onChange } = useForm({
     username: "",
     password: "",
@@ -14,12 +23,18 @@ const LoginForm = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await login({
-      variables: {
-        username: value.username,
-        password: value.password,
-      },
-    });
+    try {
+      await login({
+        variables: {
+          username: value.username,
+          password: value.password,
+        },
+      });
+      dispatch(checkAuth());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <form

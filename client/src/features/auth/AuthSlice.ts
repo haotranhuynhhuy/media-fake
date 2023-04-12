@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IAuthContext } from "../../types";
+import { HttpClientMethod } from "../../libs/axios";
 
 const defaultIsAuthenticated = false;
 
 const initialState: IAuthContext = {
   isAuthenticated: defaultIsAuthenticated,
-  setIsAuthenticated: () => {},
-  checkAuth: () => Promise.resolve(),
+  checkAuth: () => {},
   logoutClient: () => {},
 };
 
@@ -14,8 +14,16 @@ export const authSlice = createSlice({
   name: "authenticated",
   initialState: initialState,
   reducers: {
-    a: () => {},
+    checkAuth: (state) => {
+      const token = HttpClientMethod.getAccessToken();
+      if (token) {
+        state.isAuthenticated = true;
+      } else {
+        const success = HttpClientMethod.getRefreshToken();
+        if (success) state.isAuthenticated = true;
+      }
+    },
   },
 });
-export const { a } = authSlice.actions;
+export const { checkAuth } = authSlice.actions;
 export default authSlice.reducer;

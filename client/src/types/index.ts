@@ -11,11 +11,28 @@ export interface Config {
 }
 export interface IAuthContext {
   isAuthenticated: boolean;
-  setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
-  checkAuth: () => Promise<void>;
+  checkAuth: () => void;
   logoutClient: () => void;
 }
 export interface FormType {
   username: string;
   password: string;
+}
+export interface UserType {
+  id: string;
+  fullname: string;
+  username: string;
+  password: string;
+  email: string;
+  avatar: string;
+  role: string;
+  gender: string;
+  address: string;
+  mobile: string;
+  story: string;
+  website: string;
+  followers: Array<UserType>;
+  following: Array<UserType>;
+  saved: Array<UserType>;
+  accessToken: string;
 }
