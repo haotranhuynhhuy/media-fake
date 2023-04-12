@@ -17,6 +17,8 @@ export interface IAuthContext {
 export interface FormType {
   username: string;
   password: string;
+  email?: string;
+  confirmPassword?: string;
 }
 export interface UserType {
   id: string;

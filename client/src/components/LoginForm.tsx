@@ -58,7 +58,8 @@ const LoginForm = () => {
         <input
           className="border rounded-lg p-2 focus:outline-none focus:ring  md:w-2/3 w-full"
           name="password"
-          type={"password"}
+          type="password"
+          autoComplete="on"
           placeholder="Enter your password"
           required
           onChange={onChange}

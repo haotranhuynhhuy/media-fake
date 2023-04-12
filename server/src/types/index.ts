@@ -44,3 +44,10 @@ export interface ContextType {
   req: Request;
   res: Response;
 }
+
+export interface RegisterForm {
+  username: string;
+  password: string;
+  email: string;
+  confirmPassword: string;
+}

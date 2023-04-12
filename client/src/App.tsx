@@ -15,7 +15,7 @@ function App() {
     setLoading(false);
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <BrowserRouter>

@@ -2,7 +2,7 @@ import { UserInputError } from "apollo-server-express";
 import User from "../model/User";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { ContextType, PostTypes, UserType } from "../types";
+import { ContextType, PostTypes, RegisterForm, UserType } from "../types";
 import Comment from "../model/Comment";
 import { createToken, sendRefreshToken } from "../util/auth";
 import verifyToken from "../middleware/auth";
@@ -35,13 +35,15 @@ const userResolvers = {
     },
   },
   Mutation: {
-    register: async (_, args: UserType) => {
-      const { username, password, email } = args;
+    register: async (_, args: RegisterForm) => {
+      const { username, password, email, confirmPassword } = args;
       //check username or email exist
       const user = await User.findOne({ username });
       const userEmail = await User.findOne({ email });
-      if (user) return new UserInputError("Username is taken");
-      if (userEmail) return new UserInputError("Email is taken");
+      if (user) return new UserInputError("Username has already taken");
+      if (userEmail) return new UserInputError("Email has already taken");
+      if (password.trim() !== confirmPassword.trim())
+        return new UserInputError("Your password does not match");
 
       //All Goods
       const hashedPassword = await argon2.hash(password);
