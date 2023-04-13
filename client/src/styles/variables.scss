@@ -1,0 +1,32 @@
+// fonts
+$font-path: '~assets/fonts/';
+// transition
+$transition: 0.25s;
+$transition-medium: 0.3s;
+$transition-long: 0.4s;
+
+// z-index
+$z-header: 100;
+$z-modal: 101;
+$z-1: 1;
+$z-loading: 999;
+
+// space
+$height-header-desktop: 100;
+$height-header-desktop-scroll: 76;
+$height-header-tablet-down: 65;
+
+$standard-viewport: 1366px;
+$width-medium: 1100px;
+$get-width: calc($width-medium - 100vw);
+$font-notosan: 'Noto Sans KR',sans-serif;
+$standard-width: 1920px;
+$account-width: 710px;
+$account-remaining-width: calc(100vw - $account-width);
+$width-header-calendar: 1380px;
+$width-remaining: calc((100vw / $standard-width)*100);
+$width-remaining-haft: calc((100vw - 634.3px)/2);
+$width-1240: calc(1270px - 100vw);
+$width-calendar: calc(110vw - 310px);
+$width-calendar-half: calc((1920px - 310px) - $width-calendar);
+$width-dept-list: calc($width-calendar / 2);

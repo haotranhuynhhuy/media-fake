@@ -1,0 +1,140 @@
+/* stylelint-disable selector-max-id */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans:wght@100;200;400;500;600;700&display=swap');
+
+html,
+body {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+    line-height: 24px;
+    @include scroll-bars(0, $bright-Navy-blue, $gainsboro, 0, 1, 10);
+    color: $jet;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; //issue click in mobile flash background highligh
+    @include scroll-bars(0, $bright-Navy-blue, $gainsboro, 0, 1, 10);
+}
+
+button {
+    &:focus {
+        outline: none;
+    }
+}
+
+p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+[role='button'],
+button {
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+input {
+    word-break: normal;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+.hidden-animation {
+    visibility: hidden;
+}
+
+.overflow-hidden {
+    height: 100vh;
+}
+
+.u-mt {
+    &-24 {
+        margin-top: rem(24);
+    }
+
+    &-16 {
+        margin-top: rem(16);
+    }
+}
+
+.rpn-notification-holder.bottom-right {
+    bottom: rem(36) !important;
+    background-color: $white;
+
+    .rpn-notification-card {
+        width: rem(350) !important;
+        border-radius: rem(8);
+        box-shadow: rem(1) rem(1) rem(12) $black-03;
+
+        &-top {
+            border-bottom: rem(1) solid $bright-Navy-blue;
+        }
+
+        .rpn-notification-card-bottom {
+            padding: 0 0 rem(5);
+            box-shadow: none;
+
+            .message {
+                .push-notify {
+                    @include adjust-flex(start,start);
+
+                    .a-image {
+                        min-width: rem(40);
+                        margin: rem(10) rem(15) rem(10) rem(10);
+                    }
+
+                    &_text {
+                        @include text-overflow(3);
+                        color: $jet;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+// html::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//     background-color: #f5f5f5;
+// }
+
+// html::-webkit-scrollbar {
+//     width: 5px;
+//     background-color: #f5f5f5;
+// }
+
+// html::-webkit-scrollbar-thumb {
+//     background-color: #f90;
+//     background-image: -webkit-linear-gradient(45deg,
+//     rgba(255, 255, 255, 0.2) 25%,
+//     transparent 25%,
+//     transparent 50%,
+//     rgba(255, 255, 255, 0.2) 50%,
+//     rgba(255, 255, 255, 0.2) 75%,
+//     transparent 75%,
+//     transparent);
+// }
