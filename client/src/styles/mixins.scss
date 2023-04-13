@@ -23,11 +23,11 @@
 }
 
 @mixin scroll-bars($size: 12,
-$thumb-color: $may-green,
-$track-color: $white-smoke,
-$border-radius-thumb: 5,
-$border-thumb: 2,
-$border-radius-track: 0) {
+    $thumb-color: $may-green,
+    $track-color: $white-smoke,
+    $border-radius-thumb: 5,
+    $border-thumb: 2,
+    $border-radius-track: 0) {
 
     // For Internet Explorer
 
@@ -142,16 +142,17 @@ $border-radius-track: 0) {
 }
 
 @mixin adjust-flex($justify-content: center, $align-item: center) {
-    align-items: $align-item;
     display: flex;
+    align-items: $align-item;
     justify-content: $justify-content;
 }
+
 @mixin skeleton-css {
     background-image: linear-gradient(90deg,
-    rgba($bg-gray-blur, 0) 0,
-    rgba($bg-gray-blur, 0.2) 20%,
-    rgba($bg-gray-blur, 0.5) 60%,
-    rgba($bg-gray-blur, 0));
+            rgba($bg-gray-blur, 0) 0,
+            rgba($bg-gray-blur, 0.2) 20%,
+            rgba($bg-gray-blur, 0.5) 60%,
+            rgba($bg-gray-blur, 0));
     animation: shimmer 1.5s ease-in-out infinite;
     margin: rem(5) 0;
     border-radius: rem(8);
@@ -169,12 +170,15 @@ $colors-design: (
 );
 
 @mixin style-color {
-    @each $name, $color in $colors-design {
+
+    @each $name,
+    $color in $colors-design {
         &-#{$name} {
             color: $color;
         }
     }
 }
+
 @mixin style-letter-spacing() {
     &-s00015 {
         letter-spacing: 0.0015em;
@@ -192,7 +196,9 @@ $colors-gradient-design: (
 );
 
 @mixin style-color-gradient {
-    @each $name, $color in $colors-gradient-design {
+
+    @each $name,
+    $color in $colors-gradient-design {
         &-#{$name} {
             background: $color;
             background-clip: text;
@@ -202,39 +208,41 @@ $colors-gradient-design: (
 }
 
 @mixin style-map($sizeList, $type: 'fontSize') {
+
     @each $size,
-        $val in $sizeList {
-        
+    $val in $sizeList {
+
         @if map-get($val, 'desktop') {
 
             &-#{$size} {
-                @if $type == 'fontSize' {
+                @if $type =='fontSize' {
                     font-size: rem(map-get(map-get($val, 'desktop'), 'fs'));
                     line-height: rem(map-get(map-get($val, 'desktop'), 'lh'));
-                    
+
                     @if map-get($val, 'tablet') {
                         @include tablet-down {
                             font-size: rem(map-get(map-get($val, 'tablet'), 'fs'));
                             line-height: rem(map-get(map-get($val, 'tablet'), 'lh'));
                         }
                     }
-    
+
                     @if map-get($val, 'mobile') {
                         @include mobile-down {
                             font-size: rem(map-get(map-get($val, 'mobile'), 'fs'));
                             line-height: rem(map-get(map-get($val, 'mobile'), 'lh'));
                         }
-                    } 
+                    }
                 }
-                @if $type == 'ratio' {
+
+                @if $type =='ratio' {
                     @include aspect-ratio(map-get(map-get($val, 'desktop'), 'w'), map-get(map-get($val, 'desktop'), 'h'));
-                    
+
                     @if map-get($val, 'tablet') {
                         @include tablet-down {
                             @include aspect-ratio(map-get(map-get($val, 'tablet'), 'w'), map-get(map-get($val, 'tablet'), 'h'));
                         }
                     }
-    
+
                     @if map-get($val, 'mobile') {
                         @include mobile-down {
                             @include aspect-ratio(map-get(map-get($val, 'mobile'), 'w'), map-get(map-get($val, 'mobile'), 'h'));
@@ -245,10 +253,10 @@ $colors-gradient-design: (
                         @include small-mobile {
                             @include aspect-ratio(map-get(map-get($val, 'small-mobile'), 'w'), map-get(map-get($val, 'small-mobile'), 'h'));
                         }
-                    } 
+                    }
                 }
             }
         }
-        
+
     }
 }

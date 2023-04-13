@@ -1,4 +1,8 @@
 @import 'styles/common';
 // Components
-@import 'components/BaseComponents/*/index.scss';
-@import 'pages/*/index.scss';
+@import 'components/BaseComponents/Button/index.scss';
+@import 'components/BaseComponents/Icon/index.scss';
+@import 'components/BaseComponents/Input/index.scss';
+
+@import 'pages/Authentication/index.scss';
+@import 'pages/Home/index.scss';
