@@ -1,5 +1,5 @@
 import React from "react";
-import { mapModifiers } from "utils/functions";
+import { mapModifiers } from "../../../utils/functions";
 
 export type IconName =
   | "search"

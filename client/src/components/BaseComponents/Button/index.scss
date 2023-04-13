@@ -1,0 +1,127 @@
+@mixin adjust-loading($width: 8, $height: 8) {
+    @if ($width > 12 & $height > 12) {
+        width: rem($width - 8);
+        height: rem($height - 8);
+    }
+
+    @else {
+        width: rem($width - 4);
+        height: rem($height - 4);
+    }
+}
+
+.a-button {
+    $root: &;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-weight: 400;
+    outline: 0;
+    overflow: hidden;
+    padding-left: rem(16);
+    padding-right: rem(16);
+    width: 100%;
+    @include font-base(14, 20);
+    @include adjust-flex();
+    @include transition(all $transition ease-in-out);
+    @include reset-button();
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25);
+
+
+    &-loading {
+        align-items: center;
+
+    }
+
+    &-h30 {
+        height: rem(30);
+
+        &#{$root}-loading {
+            img {
+                @include adjust-loading(30, 30);
+            }
+        }
+    }
+
+    &-h36 {
+        height: rem(36);
+
+        &#{$root}-loading {
+            img {
+                @include adjust-loading(36, 36);
+            }
+        }
+    }
+
+    &-h36-md {
+        height: rem(36);
+
+        &#{$root}-loading {
+            img {
+                @include adjust-loading(36, 36);
+            }
+        }
+
+        @include mobile-down {
+            height: rem(32);
+        }
+    }
+
+    &-h56 {
+        height: rem(56);
+
+        &#{$root}-loading {
+            img {
+                @include adjust-loading(56, 56);
+            }
+        }
+    }
+
+    &-primary {
+        background-color: $bright-Navy-blue;
+        border-radius: rem(8);
+        color: $white;
+        padding: rem(8) rem(20);
+    }
+
+    &-bgGray {
+        background-color: $dim-gray;
+        border-radius: rem(3.34);
+        color: $jet;
+        padding-right: rem(18);
+        padding-left: rem(17);
+    }
+
+    &-white {
+        background-color: $white;
+        border-radius: rem(3.34);
+        color: $bright-Navy-blue;
+        padding-right: rem(18);
+        padding-left: rem(17);
+    }
+
+    &-columbia-blue {
+        background-color: $columbia-blue;
+        border-radius: rem(8);
+        color: $bright-Navy-blue;
+        padding: rem(8) rem(20);
+    }
+
+    &-transparent {
+        background-color: transparent;
+        box-shadow: unset;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        background-color: $dark-Gray;
+        cursor: no-drop;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 1;
+    }
+}

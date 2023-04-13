@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import LoginForm from "../components/LoginForm";
-import RegisterForm from "../components/RegisterForm";
-import { RootState } from "../store/store";
+
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { RootState } from "../../store/store";
+import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../../components/RegisterForm";
 
-const LoginPage = () => {
+const Authentication = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   if (isAuthenticated) {
     return <Navigate to={"/"} />;
@@ -62,4 +63,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Authentication;

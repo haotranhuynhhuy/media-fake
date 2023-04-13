@@ -2,64 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'styles/common';
-// Components
-@import 'components/BaseComponents/*/index.scss';
-@import 'pages/*/index.scss';
-
-.orangeBG {
-    box-shadow: 0 5px 45px rgba(0, 0, 0, .15);
-    background: rgba(255, 255, 255, .2);
-
-    .box {
-        position: relative;
-        width: 50%;
-        height: 100%;
-    }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
 }
 
-.form-box {
-    position: absolute;
-    background: #fff;
-    height: 100%;
-    width: 50%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
-    transition: ease-in-out .5s;
-    overflow: hidden;
-}
-
-.form-box.active {
-    left: 50%;
-}
-
-.form-box .form {
-    position: absolute;
-    transition: .5s;
-    width: 100%;
-}
-
-.form-box .signInForm {
-    left: 0;
-    transition-delay: .25s;
-}
-
-.form-box.active .signInForm {
-    left: -100%;
-    transition-delay: 0;
-}
-
-.form-box .signUpForm {
-    left: 100%;
-    transition-delay: 0;
-}
-
-.form-box.active .signUpForm {
-    left: 0;
-    transition-delay: .25s;
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "./App.scss";
 import { checkAuth } from "./features/auth/AuthSlice";
 import PrivateRoute from "./utils/PrivateRoute";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Home/Dashboard";
+import Authentication from "./pages/Authentication";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<Authentication />} />
         <Route element={<PrivateRoute />}>
           <Route element={<Dashboard />} path="/" />
         </Route>
