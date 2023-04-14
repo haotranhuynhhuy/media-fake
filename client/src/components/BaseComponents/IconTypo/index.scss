@@ -1,0 +1,62 @@
+.m-icontypo {
+    cursor: pointer;
+
+
+    &_user {
+        @include adjust-flex(flex-start, center);
+        gap: 12px;
+        padding: rem(5)rem(16);
+        margin: rem(4)rem(0);
+
+        &:hover {
+            background-color: $bright-Navy-blue;
+            border-radius: rem(8);
+
+            .a-typography {
+                color: $white;
+            }
+        }
+    }
+
+    &_bottom {
+        @include adjust-flex(flex-start, center);
+        gap: 12px;
+        padding: rem(5)rem(16);
+        margin: rem(4)rem(0);
+
+        &-icon {
+            transform: rotate(0deg);
+            transition: transform 0.2s linear;
+
+            &-open_more {
+                transform: rotate(-180deg);
+                transition: transform 0.2s linear;
+            }
+        }
+    }
+
+    &_list {
+        display: block;
+        min-width: rem(360);
+        border-radius: rem(8);
+
+        li {
+            cursor: pointer;
+            @include adjust-flex(flex-start, center);
+            padding: 5px 16px;
+            margin: 4px 0;
+
+            &:hover {
+                background-color: $bright-Navy-blue;
+                border-radius: rem(8);
+
+                .a-typography {
+                    color: $white;
+                }
+            }
+
+        }
+    }
+
+
+}

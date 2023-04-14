@@ -38,3 +38,12 @@ export interface UserType {
   saved: Array<UserType>;
   accessToken: string;
 }
+
+export type OptionsChild = {
+  id?: number;
+  name?: string;
+  acronym?: string;
+  icon?: string;
+  slug?: string;
+  click?: () => void;
+};

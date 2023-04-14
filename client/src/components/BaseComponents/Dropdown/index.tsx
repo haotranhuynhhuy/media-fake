@@ -5,17 +5,9 @@ import Typography from "../Typography";
 import Link from "../Link";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { mapModifiers } from "../../../utils/functions";
+import { OptionsChild } from "../../../types";
 
 export type TypeDropdown = "menu" | "phone_number" | "dropDown";
-
-export type OptionsChild = {
-  id?: number;
-  name?: string;
-  acronym?: string;
-  icon?: string;
-  slug?: string;
-  click?: () => void;
-};
 
 interface DropdownProps {
   optionsChild: OptionsChild[];
@@ -41,7 +33,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggling = () => setIsOpen(!isOpen);
+  const toggling = () => {
+    setIsOpen(!isOpen);
+  };
 
   useClickOutside(dropdownRef, () => {
     if (isOpen) setIsOpen(false);
@@ -93,6 +87,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                       ? "/"
                       : option.slug
                   }
+                  key={option.id}
                 >
                   <li
                     className="m-dropdown_item"
