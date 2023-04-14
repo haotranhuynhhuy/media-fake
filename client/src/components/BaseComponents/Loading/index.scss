@@ -1,0 +1,142 @@
+@mixin mobile-loading {
+    --dimension: 8px;
+    --spacingTop: 22px;
+    --widthWrap: 50px;
+    --heightWrap: 28px;
+}
+
+.a-loader-circle {
+    &-fullScreen {
+        background-color: $white-03;
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 103;
+        @include adjust-flex();
+    }
+
+    .loader-wrapper {
+        $root: &;
+        width: var(--widthWrap);
+        height: var(--heightWrap);
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .loader-general {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .loader-circle {
+        width: var(--dimension);
+        height: var(--dimension);
+        position: absolute;
+        border-radius: 50%;
+        background-color: $white;
+        left: 10%;
+        transform-origin: 50%;
+        animation: circle 0.5s alternate infinite ease;
+    }
+
+    .loader-circle:nth-child(2) {
+        left: 44%;
+        animation-delay: 0.2s;
+    }
+
+    .loader-circle:nth-child(3) {
+        left: auto;
+        right: 10%;
+        animation-delay: 0.3s;
+    }
+
+    .loader-shadow {
+        width: var(--dimension);
+        top: calc(var(--spacingTop) + 2px);
+
+        height: rem(4);
+        border-radius: 50%;
+        background-color: $bright-Navy-blue;
+        position: absolute;
+        transform-origin: 50%;
+        z-index: -1;
+        left: 10%;
+        filter: blur(1px);
+        animation: shadow 0.5s alternate infinite ease;
+    }
+
+    .loader-shadow:nth-child(4) {
+        left: 44%;
+        animation-delay: 0.2s;
+    }
+
+    .loader-shadow:nth-child(5) {
+        left: auto;
+        right: 10%;
+        animation-delay: 0.3s;
+    }
+
+    &-large {
+        --dimension: 30px;
+        --spacingTop: 92px;
+        --widthWrap: 200px;
+        --heightWrap: 110px;
+    }
+
+    &-medium {
+        --dimension: 15px;
+        --spacingTop: 40px;
+        --widthWrap: 130px;
+        --heightWrap: 52px;
+
+        @include tablet-down {
+            @include mobile-loading;
+        }
+    }
+
+    &-small {
+        @include mobile-loading;
+    }
+}
+
+@keyframes shadow {
+    0% {
+        transform: scaleX(1.5);
+    }
+
+    40% {
+        transform: scaleX(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scaleX(0.2);
+        opacity: 0.4;
+    }
+}
+
+@keyframes circle {
+    0% {
+        top: var(--spacingTop);
+        height: rem(5);
+        border-radius: rem(50) rem(50) rem(25) rem(25);
+        transform: scaleX(1.7);
+        background: $sinopia;
+    }
+
+    40% {
+        height: var(--dimension);
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+
+    100% {
+        top: 0%;
+    }
+}

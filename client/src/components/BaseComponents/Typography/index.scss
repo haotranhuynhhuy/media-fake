@@ -1,0 +1,51 @@
+$font-sizes: (
+    '64x84': (desktop:(fs: 64, lh: 84), mobile:(fs: 48, lh: 60)),
+    '48x64': (desktop:(fs: 48, lh: 64),mobile:(fs: 32, lh: 42)),
+    '32x48': (desktop:(fs: 32, lh: 48), mobile:(fs: 24, lh: 36)),
+    '28x40': (desktop:(fs: 28, lh: 40), mobile:(fs: 14, lh: 22)),
+    '24x36': (desktop:(fs: 24, lh: 36), mobile:(fs: 20, lh: 32)),
+    '24x34': (desktop:(fs: 24, lh: 34), mobile:(fs: 20, lh: 30)),
+    '20x32': (desktop:(fs: 20, lh: 32), mobile:(fs: 18, lh: 27)),
+    '16x28': (desktop:(fs: 16, lh: 28)),
+    '14x20': (desktop:(fs: 14, lh: 20)),
+    '12x20': (desktop:(fs: 12, lh: 20)),
+    '24x29': (desktop:(fs: 24, lh: 29)),
+    '20x30': (desktop:(fs: 20, lh: 30)),
+    '14x21': (desktop:(fs: 14, lh: 21)),
+    '16x24': (desktop:(fs: 16, lh: 24)),
+    '12x18': (desktop:(fs: 12, lh: 18)),
+    '50x36': (desktop:(fs: 50, lh: 36)),
+    '50x62': (desktop:(fs: 50, lh: 62)),
+    '46x50': (desktop:(fs: 46, lh: 50)),
+    '40x36': (desktop:(fs: 40, lh: 36)),
+    '12x14': (desktop:(fs: 12, lh: 14)),
+    '12x24': (desktop:(fs: 12, lh: 24)),
+    '18x32': (desktop:(fs: 18, lh: 32)),
+);
+
+.a-typography {
+    $root: &;
+    // heading css
+    margin-top: 0;
+    margin-bottom: 0;
+    // -webkit-user-select: none;
+    // -moz-user-select: none;
+    // user-select: none;
+
+    &-inline {
+        display: inline-block;
+    }
+
+    // common
+    @include style-map($font-sizes);
+    @include style-color();
+    @include style-font-weight();
+    @include style-general();
+    @include style-letter-spacing();
+    @include style-color-gradient();
+    // @include break-max(rem(440)) {
+    //     @include font-base(14,21);
+    // }
+}
+
+

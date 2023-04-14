@@ -1,0 +1,13 @@
+@import 'styles/common';
+// Components
+@import 'components/BaseComponents/Button/index.scss';
+@import 'components/BaseComponents/Icon/index.scss';
+@import 'components/BaseComponents/Input/index.scss';
+@import 'components/BaseComponents/Loading/index.scss';
+@import 'components/BaseComponents/Image/index.scss';
+@import 'components/BaseComponents/Dropdown/index.scss';
+@import 'components/BaseComponents/Link/index.scss';
+@import 'components/BaseComponents/Typography/index.scss';
+
+@import 'pages/Authentication/index.scss';
+@import 'pages/Home/index.scss';

@@ -1,0 +1,114 @@
+.a-icon {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    $size-icon: ('8x12': (w: 8, h: 12),
+        '14x14': (w: 14, h: 14),
+        '16x16': (w: 16, h: 16),
+        '17x17': (w: 17, h: 17),
+        '18x18': (w: 18, h: 18),
+        '20x20': (w: 20, h: 20),
+        '20x15': (w: 20, h: 15),
+        '24x24': (w: 24, h: 24),
+        '28x28': (w: 28, h: 28),
+        '10x10': (w: 10, h: 10),
+        '40x40': (w: 40, h: 40),
+        '32x32': (w: 32, h: 32),
+        '80x80': (w: 80, h: 80),
+        '5x10': (w: 5, h: 10),
+        '69x72' : (w: 69, h:72),
+        '34x34' : (w: 34, h:34),
+        '30x30' : (w: 30, h:30),
+        '12x12' : (w: 12, h:12),
+        '25x27' : (w: 25, h:27),
+        '25x25' : (w: 25, h:25),
+        '17x12' : (w: 17, h:12),
+        '21x21' : (w: 21, h:21),
+        '25x19' : (w: 25, h:19),
+        '36x36' : (w: 36, h:36),
+        '22x16' : (w: 22, h:16),
+        '26x26' : (w: 26, h:26),
+        '44x44' : (w: 44, h:44),
+        '120x120' : (w: 120, h:120),
+        '17x19' : (w: 17, h:19));
+
+    $icons: 'search',
+    'dropDown',
+    'bell',
+    'Earth',
+    'home',
+    'user',
+    'England',
+    'home',
+    'Korea',
+    'user',
+    'VietNam',
+    'close',
+    'errorOutline',
+    'successOutline',
+    'add',
+    'cancel',
+    'chevronLeft',
+    'chevronRight',
+    'hamburger',
+    'dropDown_blue',
+    'clock',
+    'calendar',
+    'doneall',
+    'right',
+    'left_feild',
+    'addInput',
+    'calendar_white',
+    'setting',
+    'tag',
+    'showpass',
+    'hidepass',
+    'message',
+    'right_feild',
+    'drop_up',
+    'timezone',
+    'loading_notify',
+    'done_notify',
+    'circle_half',
+    'confirm',
+    'cancelimage',
+    'edit',
+    'cancel_notify',
+    'task_notify',
+    'department_list',
+    'logout',
+    'file',
+    'edit_dept',
+    'delete_item',
+    'sidebar_menu',
+    'save_all',
+    'dept_mail',
+    'dept_info',
+    'dept_phone',
+    'micro',
+    'addgroup',
+    'download',
+    'playVoice',
+    'pauseVoice';
+
+    @each $icon in $icons {
+        &-#{$icon} {
+            background-image: url('assets/icons/ic_#{$icon}.svg');
+        }
+    }
+
+    @each $size,
+    $val in $size-icon {
+        &-#{$size} {
+            height: map-get($val, 'h')+ px;
+            width: map-get($val, 'w') + px;
+        }
+    }
+
+    &-pointer {
+        cursor: pointer;
+        position: relative;
+    }
+}
