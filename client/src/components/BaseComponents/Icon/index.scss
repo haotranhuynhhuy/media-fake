@@ -95,7 +95,7 @@
 
     @each $icon in $icons {
         &-#{$icon} {
-            background-image: url('~assets/icons/ic_#{$icon}.svg');
+            background-image: url('assets/icons/ic_#{$icon}.svg');
         }
     }
 
