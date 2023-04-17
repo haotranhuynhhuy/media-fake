@@ -2,12 +2,16 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Icon from "../../BaseComponents/Icon";
 import Image from "../../BaseComponents/Image";
-import Typography from "../../BaseComponents/Typography";
 import DropdownCheckbox from "../../BaseComponents/DropdownCheckbox";
 import Button from "../../BaseComponents/Button";
+import { useForm } from "../../../utils/hooks";
+import TextArea from "../../BaseComponents/TextArea";
 
 export default function PostForm({ img }: any) {
-  let [isOpen, setIsOpen] = useState(true);
+  const { value, onChange } = useForm({
+    body: "",
+  });
+  const [isOpen, setIsOpen] = useState(true);
 
   function closeModal() {
     setIsOpen(false);
@@ -54,7 +58,7 @@ export default function PostForm({ img }: any) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="max-w-[32rem] transform rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-[32rem] transform rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="flex justify-between border-b border-gray-100 pb-2">
                     <div className="flex gap-2 items-center">
                       {img ? (
@@ -74,20 +78,33 @@ export default function PostForm({ img }: any) {
                     </button>
                   </div>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
+                    <TextArea
+                      id="body"
+                      name="body"
+                      placeholder="Bạn muốn chia sẻ điều gì?"
+                      rows={9}
+                      handleOnchange={onChange}
+                      value={value.body}
+                    />
+                  </div>
+                  <div className="border rounded-lg p-2 flex justify-between">
+                    <p>Thêm vào bài viết của bạn</p>
+                    <div className="image-upload">
+                      <label htmlFor="file-input">
+                        <Icon iconName="addimage" />
+                      </label>
+                      <input id="file-input" type="file" className="hidden" />
+                    </div>
                   </div>
 
                   <div className="mt-4">
-                    <button
+                    <Button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="text-white bg-green-500 font-bold"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
-                    </button>
+                      Chia sẻ
+                    </Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

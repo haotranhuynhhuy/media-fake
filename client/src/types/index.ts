@@ -15,10 +15,11 @@ export interface IAuthContext {
   logoutClient: () => void;
 }
 export interface FormType {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
   email?: string;
   confirmPassword?: string;
+  body?: string;
 }
 export interface UserType {
   id: string;

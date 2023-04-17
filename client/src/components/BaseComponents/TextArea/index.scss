@@ -1,0 +1,55 @@
+.a-textarea {
+    $root: &;
+
+    &_label {
+        @include font-base(12, 16);
+        color: $white;
+        margin-bottom: rem(5);
+
+        &-required {
+            color: $white;
+            margin-left: rem(4);
+        }
+
+        &-error {
+            color: $sinopia;
+        }
+    }
+
+    &_error {
+        @include font-base(12, 18);
+        color: $sinopia;
+        margin-top: rem(4);
+    }
+
+    &_input {
+        font-family: inherit;
+        margin: 0;
+        outline: none;
+        transition: all $transition linear;
+        width: 100%;
+        vertical-align: bottom;
+        resize: none;
+        font-weight: 500;
+
+        &-error {
+            border-color: $sinopia;
+            color: $sinopia;
+        }
+
+        &:focus {
+            border-color: $bright-Navy-blue;
+        }
+    }
+
+    &-bgtransparent {
+        #{$root}_input {
+            background: transparent;
+        }
+    }
+
+    &_input {
+        @include style-font-weight();
+        @include style-color();
+    }
+}

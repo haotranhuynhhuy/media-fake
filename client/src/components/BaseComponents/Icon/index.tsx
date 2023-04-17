@@ -61,6 +61,7 @@ export type IconName =
   | "pauseVoice"
   | "usergroup"
   | "locked"
+  | "addimage"
   | string;
 
 export type IconSize =

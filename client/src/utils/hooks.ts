@@ -6,7 +6,9 @@ import { AppDispatch, RootState } from "../store/store";
 export const useForm = (initState: FormType) => {
   const [value, setValue] = useState(initState);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setValue({
       ...value,
       [event.target.name]: event.target.value,
