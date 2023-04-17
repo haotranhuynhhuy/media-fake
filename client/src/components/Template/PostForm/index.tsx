@@ -1,10 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import Icon from "../Icon";
-import Image from "../Image";
-import Typography from "../Typography";
-import DropdownCheckbox from "../DropdownCheckbox";
-import Button from "../Button";
+import Icon from "../../BaseComponents/Icon";
+import Image from "../../BaseComponents/Image";
+import Typography from "../../BaseComponents/Typography";
+import DropdownCheckbox from "../../BaseComponents/DropdownCheckbox";
+import Button from "../../BaseComponents/Button";
 
 export default function PostForm({ img }: any) {
   let [isOpen, setIsOpen] = useState(true);

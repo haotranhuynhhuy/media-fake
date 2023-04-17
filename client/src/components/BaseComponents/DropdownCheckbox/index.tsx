@@ -14,9 +14,9 @@ export default function DropdownCheckbox() {
     <>
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
-          <Listbox.Button className="relative flex gap-2 max-w-40 cursor-default rounded-lg bg-gray-200 py-1 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative flex items-center gap-2 max-w-40 cursor-default rounded-md bg-gray-200 py-1 pl-3 pr-10 text-left shadow-md sm:text-sm">
             <Icon iconName={selected.iconName} size="18x18" />
-            <span className="block truncate">{selected.name}</span>
+            <span className="block truncate font-bold">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <Icon iconName="dropDown" size="12x12" />
             </span>
@@ -32,7 +32,7 @@ export default function DropdownCheckbox() {
                 <Listbox.Option
                   key={personIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                    `relative cursor-default select-none py-2 pl-10 pr-4 font-bold ${
                       active ? " text-amber-900" : "text-gray-900"
                     }`
                   }

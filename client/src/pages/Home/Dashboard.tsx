@@ -8,7 +8,7 @@ import alarm from "../../assets/images/alarmSVG.svg";
 import CardNotifyList, {
   NewsListCardProps,
 } from "../../components/BaseComponents/CardNotify";
-import PostForm from "../../components/BaseComponents/PostForm";
+import PostForm from "../../components/Template/PostForm";
 
 const Dashboard = () => {
   const [cardListnotify, setCardListnotify] = useState<NewsListCardProps[]>([
@@ -72,7 +72,7 @@ const Dashboard = () => {
   };
   return (
     <div className="w-screen h-screen">
-      <Input id="search_id" iconName="search" iconSize="20x20" />
+      <Input id="search" iconName="search" iconSize="20x20" />
       <Image src={image} alt="photo" size="contain" />
       <div className="flex justify-end">
         <Dropdown
