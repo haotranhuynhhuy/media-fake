@@ -16,6 +16,7 @@ export type IconName =
   | "Korean"
   | "England"
   | "cancel"
+  | "checked"
   | "chevronLeft"
   | "chevronRight"
   | "hamburger"
@@ -57,7 +58,10 @@ export type IconName =
   | "addgroup"
   | "download"
   | "playVoice"
-  | "pauseVoice";
+  | "pauseVoice"
+  | "usergroup"
+  | "locked"
+  | string;
 
 export type IconSize =
   | "6x12"
@@ -88,6 +92,7 @@ export type IconSize =
   | "22x16"
   | "26x26"
   | "30x30"
+  | "38x38"
   | "44x44"
   | "120x120"
   | "17x19";

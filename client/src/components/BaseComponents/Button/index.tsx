@@ -1,6 +1,6 @@
 import React from "react";
 
-import imgLoading from "assets/images/loading.gif";
+import imgLoading from "../../../assets/images/loading.gif";
 import Icon, { IconName, IconSize } from "../Icon";
 import { mapModifiers } from "../../../utils/functions";
 

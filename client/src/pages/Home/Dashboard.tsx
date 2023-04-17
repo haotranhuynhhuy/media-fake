@@ -8,6 +8,7 @@ import alarm from "../../assets/images/alarmSVG.svg";
 import CardNotifyList, {
   NewsListCardProps,
 } from "../../components/BaseComponents/CardNotify";
+import PostForm from "../../components/BaseComponents/PostForm";
 
 const Dashboard = () => {
   const [cardListnotify, setCardListnotify] = useState<NewsListCardProps[]>([
@@ -90,6 +91,10 @@ const Dashboard = () => {
         {isOpenNotify && (
           <CardNotifyList title="Thông báo" notifyList={cardListnotify} />
         )}
+      </div>
+
+      <div>
+        <PostForm />
       </div>
     </div>
   );
