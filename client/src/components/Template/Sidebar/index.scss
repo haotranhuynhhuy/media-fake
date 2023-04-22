@@ -1,0 +1,223 @@
+/* stylelint-disable max-nesting-depth */
+.t-sidebar {
+    height: calc(100vh - 70px);
+    background-color: $bright-Navy-blue;
+    padding: rem(20) rem(0);
+    z-index: 200;
+    position: relative;
+
+    &_wrapper {
+        width: 100%;
+        background-color: $bright-Navy-blue;
+
+        &_header {
+            min-width: 270px;
+            @include adjust-flex(space-between, flex-start);
+            margin: rem(0) rem(20) rem(10);
+            position: relative;
+            padding-bottom: rem(20);
+
+            &-wrapper {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: start;
+                width: 100%;
+
+                .a-image {
+                    @include adjust-flex(center, flex-start);
+                    border-radius: 50%;
+                    width: rem(60);
+                    height: rem(60);
+                }
+
+                &_title {
+                    width: 100%;
+                    height: 100%;
+                    text-align: center !important;
+
+                    .a-typography {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                &_loading {
+                    background-image: linear-gradient(90deg,
+                            rgba($bg-gray-blur, 0) 0,
+                            rgba($bg-gray-blur, 0.2) 20%,
+                            rgba($bg-gray-blur, 0.5) 60%,
+                            rgba($bg-gray-blur, 0));
+                    animation: shimmer 1.5s ease-in-out infinite;
+                    margin: rem(5) 0;
+                    border-radius: rem(8);
+                }
+
+                &_loading_avatar {
+                    width: rem(60);
+                    height: rem(60);
+                    background-image: linear-gradient(90deg,
+                            rgba($bg-gray-blur, 0) 0,
+                            rgba($bg-gray-blur, 0.2) 20%,
+                            rgba($bg-gray-blur, 0.5) 60%,
+                            rgba($bg-gray-blur, 0));
+                    @include adjust-flex(center, flex-start);
+                    border-radius: 50%;
+                    animation: shimmer 1.5s ease-in-out infinite;
+                }
+
+                &_loading_name {
+                    width: 60%;
+                    height: rem(25);
+                }
+
+                &_loading_hi {
+                    width: 60%;
+                    height: rem(25);
+                }
+
+            }
+
+            &::after {
+                content: '';
+                height: rem(2);
+                width: 100%;
+                background-color: $white;
+                position: absolute;
+                bottom: 0;
+
+                @include break-max(rem(440)) {
+                    width: 90%;
+                }
+            }
+
+            &_off-sidebar {
+                position: absolute;
+                right: 0%;
+
+                @include break-max(rem(440)) {
+
+                    right: 8%;
+                }
+            }
+
+            @include break-max(rem(440)) {
+                width: 100%;
+                overflow: hidden;
+                margin: 0 10px;
+                min-width: unset;
+            }
+        }
+
+        &_content {
+            width: 100%;
+            margin-top: 10px;
+            min-width: 270px;
+
+
+            &_item {
+                @include adjust-flex(space-between, center);
+                cursor: pointer;
+                position: relative;
+                padding: rem(10) rem(20);
+
+                &:hover {
+                    background-color: #428dd8;
+                    border-radius: rem(4);
+                }
+
+                &_title {
+                    @include adjust-flex(space-between, center);
+
+                    .a-icon {
+                        margin: rem(0)rem(14) rem(0) rem(0);
+                    }
+                }
+
+                &-child {
+                    position: absolute;
+                    top: 0;
+                    background-color: $white;
+                    width: max-content;
+                    height: max-content;
+                    margin-left: rem(20);
+                    box-shadow: rem(0)rem(2) rem(8) $dark-Gray;
+                    border-radius: rem(8);
+                    padding: rem(10);
+                    z-index: 200;
+
+                    &_item {
+                        @include adjust-flex(flex-start, center);
+                        padding: rem(10) rem(20);
+
+                        .a-icon {
+                            margin: rem(0)rem(14) rem(0) rem(0);
+                        }
+
+                        &:hover {
+                            background-color: #428dd8;
+                            z-index: 200;
+
+                            .a-typography {
+                                color: $white;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .item_actives,
+            .item_active {
+                background-color: #428dd8;
+
+                .t-sidebar_wrapper_content_item_title {
+                    .a-icon {
+                        min-width: 30px;
+                        margin: rem(0)rem(14) rem(0) rem(0);
+                    }
+
+                    .a-typography {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .item_active {
+                animation: isShowBar 0.2s linear forwards;
+
+            }
+
+            @include break-max(rem(440)) {
+                min-width: unset;
+            }
+        }
+    }
+
+    @include break-max(rem(440)) {
+        height: 100vh;
+    }
+}
+
+@keyframes isShowBar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 310px;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0;
+    }
+
+    100% {
+        background-position: 200px;
+    }
+}

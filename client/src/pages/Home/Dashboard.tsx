@@ -9,6 +9,7 @@ import CardNotifyList, {
   NewsListCardProps,
 } from "../../components/BaseComponents/CardNotify";
 import PostForm from "../../components/Template/PostForm";
+import Sidebar from "../../components/Template/Sidebar";
 
 const Dashboard = () => {
   const [cardListnotify, setCardListnotify] = useState<NewsListCardProps[]>([
@@ -34,6 +35,7 @@ const Dashboard = () => {
     },
   ]);
   const [isOpenNotify, setisShowNotify] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   const [optionSideBarMobile, setOptionSideBarMobile] = useState([
     {
@@ -65,10 +67,30 @@ const Dashboard = () => {
     },
   ];
 
+  const optionSideBarOwn = [
+    {
+      id: 0,
+      icon: "calendar_white",
+      title: "menu.my_calendar",
+      child: false,
+      slug: "/",
+    },
+    {
+      id: 1,
+      icon: "tag",
+      title: "menu.coupon_management",
+      child: false,
+      slug: "/login",
+    },
+  ];
+
   const handleSeeMore = () => {
     setOptionSideBarMobile((prev) => {
       return [...prev, ...optionSideBarMobile2];
     });
+  };
+  const handleShowSideBar = () => {
+    setShowSideBar(!showSideBar);
   };
   return (
     <div className="w-screen h-screen">
@@ -95,6 +117,16 @@ const Dashboard = () => {
 
       <div>
         <PostForm />
+      </div>
+
+      <div>
+        <Sidebar
+          optionSideBar={optionSideBarOwn}
+          nameUser={"GUEST"}
+          handleOffSideBar={handleShowSideBar}
+          mainLayout
+          cloneShowSideBar={false}
+        />
       </div>
     </div>
   );
