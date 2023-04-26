@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useEmitter from '@/composables/useEmitter';
+import useEmitter from "../../composables/useEmitter";
 
 type options = {
   id: string;
@@ -12,13 +12,13 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  modelValue: '',
+  modelValue: "",
   data: () => [],
 });
 
 const value = useEmitter();
 const handleChoose = (event: any) => {
-  value.emit('update:modelValue', event.target.value);
+  value.emit("update:modelValue", event.target.value);
 };
 </script>
 <template>

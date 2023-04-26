@@ -7,3 +7,11 @@ export interface Config {
     tokenType: "Basic" | "Bearer";
   };
 }
+export interface InputProps {
+  id: string;
+  placeholder?: string;
+  inputType?: string;
+  length?: number;
+  modelValue?: string;
+  mode?: any;
+}

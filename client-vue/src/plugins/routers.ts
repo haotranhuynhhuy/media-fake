@@ -71,6 +71,4 @@ router.beforeEach((to, from, next) => {
 
 export type RouterType = RouteRecordRaw & { menu?: SidebarMenu };
 
-// console.log(routes);
-
 export default router;

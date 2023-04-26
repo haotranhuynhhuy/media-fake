@@ -3,14 +3,14 @@ import { httpClient } from "../libs/httpClient";
 
 export const checkNotLogin = () => {
   if (httpClient.getAccessToken()) {
-    return constRouter.DASHBOARD.name;
+    return constRouter.INTRO.name;
   }
   return null;
 };
 
 export const auth = () => {
   if (!httpClient.getAccessToken()) {
-    return constRouter.LOGIN.name;
+    return constRouter.INTRO.name;
   }
   return null;
 };

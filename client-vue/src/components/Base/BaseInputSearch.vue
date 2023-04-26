@@ -17,6 +17,7 @@
     </svg>
     <BaseInput
       v-model:modelValue="value"
+      :id="id"
       :placeholder="placeholder"
       :mode="mode"
     />
@@ -24,20 +25,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import BaseInput from './BaseInput.vue';
-import useEmitter from '@/composables/useEmitter';
+import { ref, watch } from "vue";
+import BaseInput from "./BaseInput.vue";
+import useEmitter from "../../composables/useEmitter";
 
 const value = ref();
 const emit = useEmitter();
 
 defineProps({
-  placeholder: { type: String, default: 'Search' },
-  mode: { type: String, default: 'text' },
+  id: { type: String, default: "search" },
+  placeholder: { type: String, default: "Search" },
+  mode: { type: String, default: "text" },
 });
 
 watch(value, (newValue) => {
-  emit.emit('inputSearch', newValue);
+  emit.emit("inputSearch", newValue);
 });
 </script>
 
