@@ -16,6 +16,7 @@
         '10x10': (w: 10, h: 10),
         '40x40': (w: 40, h: 40),
         '32x32': (w: 32, h: 32),
+        '38x38': (w: 38, h: 38),
         '80x80': (w: 80, h: 80),
         '5x10': (w: 5, h: 10),
         '69x72' : (w: 69, h:72),
@@ -35,6 +36,7 @@
         '17x19' : (w: 17, h:19));
 
     $icons: 'search',
+    'addimage',
     'dropDown',
     'bell',
     'Earth',
@@ -50,6 +52,7 @@
     'successOutline',
     'add',
     'cancel',
+    'checked',
     'chevronLeft',
     'chevronRight',
     'hamburger',
@@ -91,6 +94,8 @@
     'addgroup',
     'download',
     'playVoice',
+    'usergroup',
+    'locked',
     'pauseVoice';
 
     @each $icon in $icons {

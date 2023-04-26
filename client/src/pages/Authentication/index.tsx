@@ -4,8 +4,8 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { RootState } from "../../store/store";
-import LoginForm from "../../components/LoginForm";
-import RegisterForm from "../../components/RegisterForm";
+import LoginForm from "../../components/Template/LoginForm";
+import RegisterForm from "../../components/Template/RegisterForm";
 
 const Authentication = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);

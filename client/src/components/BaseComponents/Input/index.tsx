@@ -36,6 +36,7 @@ const InputRef: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     disabled,
     isPassword,
     readOnly,
+    name,
     ...props
   },
   ref
@@ -79,6 +80,7 @@ const InputRef: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           ref={ref}
           disabled={disabled}
           readOnly={readOnly}
+          name={name}
         />
         {iconName && (
           <button
@@ -115,7 +117,7 @@ const InputRef: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         )}
       </div>
 
-      <span className="a-input_error">{error}</span>
+      {error && <span className="a-input_error">{error}</span>}
     </div>
   );
 };

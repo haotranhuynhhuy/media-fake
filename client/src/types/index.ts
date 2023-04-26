@@ -15,10 +15,11 @@ export interface IAuthContext {
   logoutClient: () => void;
 }
 export interface FormType {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
   email?: string;
   confirmPassword?: string;
+  body?: string;
 }
 export interface UserType {
   id: string;
@@ -38,3 +39,12 @@ export interface UserType {
   saved: Array<UserType>;
   accessToken: string;
 }
+
+export type OptionsChild = {
+  id?: number;
+  name?: string;
+  acronym?: string;
+  icon?: string;
+  slug?: string;
+  click?: () => void;
+};

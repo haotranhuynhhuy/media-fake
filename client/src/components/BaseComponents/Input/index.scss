@@ -7,10 +7,10 @@
     }
 
     &_input {
-        @include font-base(12, 20);
         border: 1px solid $dark-gray;
+        border-radius: rem(8);
         background-color: $white;
-        padding: rem(6) rem(11) rem(7) rem(11);
+        padding: rem(8);
         appearance: none;
         font-family: inherit;
         outline: none;
