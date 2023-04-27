@@ -10,6 +10,7 @@ import CardNotifyList, {
 } from "../../components/BaseComponents/CardNotify";
 import PostForm from "../../components/Template/PostForm";
 import Sidebar from "../../components/Template/Sidebar";
+import MainLayout from "../../components/Template/MainLayout";
 
 const Dashboard = () => {
   const [cardListnotify, setCardListnotify] = useState<NewsListCardProps[]>([
@@ -93,42 +94,44 @@ const Dashboard = () => {
     setShowSideBar(!showSideBar);
   };
   return (
-    <div className="w-screen h-screen">
-      <Input id="search" iconName="search" iconSize="20x20" />
-      <Image src={image} alt="photo" size="contain" />
-      <div className="flex justify-end">
-        <Dropdown
-          optionsChild={optionSideBarMobile || []}
-          typeDropdown="menu"
-          name="username"
+    <MainLayout>
+      <div className="h-screen">
+        <Input id="search" iconName="search" iconSize="20x20" />
+        <Image src={image} alt="photo" size="contain" />
+        <div className="flex justify-end">
+          <Dropdown
+            optionsChild={optionSideBarMobile || []}
+            typeDropdown="menu"
+            name="Ahihi"
+          />
+        </div>
+
+        <IconTypo
+          optionsChild={optionSideBarMobile}
+          name="Hao tran"
+          handleSeeMore={handleSeeMore}
         />
-      </div>
+        <div>
+          {isOpenNotify && (
+            <CardNotifyList title="Thông báo" notifyList={cardListnotify} />
+          )}
+        </div>
 
-      <IconTypo
-        optionsChild={optionSideBarMobile}
-        name="Hao tran"
-        handleSeeMore={handleSeeMore}
-      />
-      <div>
-        {isOpenNotify && (
-          <CardNotifyList title="Thông báo" notifyList={cardListnotify} />
-        )}
-      </div>
+        <div>
+          <PostForm />
+        </div>
 
-      <div>
-        <PostForm />
+        <div>
+          <Sidebar
+            optionSideBar={optionSideBarOwn}
+            nameUser={"GUEST"}
+            handleOffSideBar={handleShowSideBar}
+            mainLayout
+            cloneShowSideBar={false}
+          />
+        </div>
       </div>
-
-      <div>
-        <Sidebar
-          optionSideBar={optionSideBarOwn}
-          nameUser={"GUEST"}
-          handleOffSideBar={handleShowSideBar}
-          mainLayout
-          cloneShowSideBar={false}
-        />
-      </div>
-    </div>
+    </MainLayout>
   );
 };
 

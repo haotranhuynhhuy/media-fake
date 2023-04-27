@@ -9,45 +9,49 @@
     }
 
     &_wrapper {
-        padding: rem(5) rem(0);
+        padding: rem(8) rem(15) rem(10);
 
         &_heading {
-            @include adjust-flex(flex-start, center);
+            @include adjust-flex(start, start);
         }
     }
 
     &_image {
-        min-width: rem(50);
-        height: rem(50);
+        min-width: rem(54);
+        height: rem(54);
 
         @include tablet-down {
             margin-right: rem(10);
         }
 
         img {
-            width: rem(30);
-            height: rem(30);
+            width: rem(40);
+            height: rem(40);
             padding: rem(2);
-            top: 20%;
-            left: 20%;
+            top: 27%;
         }
     }
 
     &_title {
         &_main {
             @include text-overflow(3);
-            min-height: rem(26);
+            min-height: rem(36);
         }
 
         &_date {
             @include adjust-flex(space-between);
             margin-top: rem(5);
             margin-left: rem(54);
-            margin-right: rem(10);
         }
     }
 
     &-isVertical {
+        // position: absolute;
+        // width: rem(12);
+        // height: rem(12);
+        // border-radius: 50%;
+        // top: 45%;
+        // right: 1%;
         background-color: $alice-blue;
     }
 }
@@ -57,7 +61,7 @@
     border-radius: rem(10);
     box-shadow: 0 rem(2) rem(20) $black-025;
     overflow: hidden;
-    // position: absolute;
+    position: absolute;
     right: 0;
     width: rem(340);
     transform: translateY(rem(10));
@@ -110,7 +114,7 @@
     &_list {
         max-height: 80vh;
         overflow: scroll;
-        @include scroll-bars(1, $bright-Navy-blue, $white, 10, 1, 10);
+        @include scroll-bars(5, $bright-Navy-blue, $white, 10, 1, 10);
 
         &-no {
             padding: rem(20) 0;

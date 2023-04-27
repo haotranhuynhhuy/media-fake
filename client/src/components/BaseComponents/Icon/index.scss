@@ -96,7 +96,9 @@
     'playVoice',
     'usergroup',
     'locked',
-    'pauseVoice';
+    'pauseVoice',
+    'video',
+    'chat';
 
     @each $icon in $icons {
         &-#{$icon} {

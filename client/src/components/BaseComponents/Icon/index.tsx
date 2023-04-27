@@ -62,6 +62,8 @@ export type IconName =
   | "usergroup"
   | "locked"
   | "addimage"
+  | "chat"
+  | "video"
   | string;
 
 export type IconSize =
