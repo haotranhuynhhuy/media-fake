@@ -104,15 +104,14 @@ const Dropdown: React.FC<DropdownProps> = ({
                     <div
                       className="flex items-center gap-3"
                       onClick={() => {
-                        if (
+                        if (option?.click) {
+                          option.click();
+                        } else if (
                           option.slug &&
                           (option.slug.includes("http") ||
                             option.slug.includes("https"))
                         ) {
                           window.open(option.slug, "_blank");
-                        }
-                        if (option?.click) {
-                          option.click();
                         }
                       }}
                     >
