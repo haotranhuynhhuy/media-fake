@@ -22,7 +22,8 @@ export const authSlice = createSlice({
         const success = HttpClientMethod.getRefreshToken();
         if (success) {
           state.isAuthenticated = true;
-        } else state.isAuthenticated = false;
+        }
+        state.isAuthenticated = false;
       }
     },
   },

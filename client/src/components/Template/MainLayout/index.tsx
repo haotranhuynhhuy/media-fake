@@ -22,11 +22,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       id: 0,
       name: "Thông tin cá nhân",
       slug: "/profile",
+      icon: "profile",
     },
     {
       id: 1,
       name: "Đăng xuất",
       slug: "/login",
+      icon: "logout",
       click: handelLogout,
     },
   ];

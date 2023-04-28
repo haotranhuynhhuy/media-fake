@@ -117,7 +117,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     >
                       <Icon
                         iconName={option.icon as IconName}
-                        size={"30x30"}
+                        size={"24x24"}
                         isPointer
                       />
                       <Typography

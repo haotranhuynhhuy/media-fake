@@ -64,6 +64,7 @@ export type IconName =
   | "addimage"
   | "chat"
   | "video"
+  | "profile"
   | string;
 
 export type IconSize =
