@@ -1,0 +1,270 @@
+.a-input {
+    $root: &;
+    position: relative;
+
+    &_wrap {
+        position: relative;
+    }
+
+    &_input {
+        border: 1px solid $dark-gray;
+        border-radius: rem(8);
+        background-color: $white;
+        padding: rem(8);
+        appearance: none;
+        font-family: inherit;
+        outline: none;
+        transition: all $transition linear;
+        width: 100%;
+        color: $jet;
+
+        #{$root}-borderRadius & {
+            border-color: $dark-gray;
+            border-radius: rem(8);
+            padding: rem(8);
+        }
+
+
+        #{$root}-hasIcon & {
+            border-color: $dark-gray;
+            border-radius: rem(20);
+            padding: rem(4) rem(32) rem(4) rem(12);
+            font-size: rem(14);
+        }
+
+        #{$root}-inputSearch & {
+            border-color: $bright-Navy-blue;
+            border-radius: rem(25);
+            padding: rem(10) rem(32);
+            letter-spacing: 0.0015em;
+            font-size: rem(14);
+            color: $dim-gray;
+
+            &:focus {
+                border-color: $bright-Navy-blue;
+            }
+
+            @include font-base(20, 28);
+
+            @include mobile-down {
+                padding: rem(12) rem(18);
+                @include font-base(16, 20);
+            }
+
+            // &::placeholder {
+            //     color: $bright-Navy-blue;
+            // }
+
+            .a-icon {
+                background-color: $bright-Navy-blue;
+            }
+        }
+
+        #{$root}-border8 & {
+            border-color: $dark-gray;
+            border-radius: rem(8);
+            padding: rem(4) rem(32) rem(4) rem(12);
+            font-size: rem(14);
+        }
+
+        #{$root}-boxNote & {
+            border-color: $dark-gray;
+            border-radius: rem(8);
+            height: 130px;
+            font-size: rem(14);
+            padding: none;
+        }
+
+        #{$root}-contactForm & {
+            border-color: $celestial-blue;
+            border-radius: rem(2);
+            padding: rem(5) rem(11);
+
+            @include mobile-down {
+                padding: rem(3) rem(7);
+            }
+
+            &::placeholder {
+                color: $dim-gray;
+            }
+        }
+
+        #{$root}-isError & {
+            border-color: $sinopia !important;
+            color: $sinopia !important;
+        }
+
+        #{$root}-readOnly & {
+            cursor: no-drop;
+            background-color: $bg-gray-blur;
+
+            &:focus {
+                border-color: $dark-gray;
+            }
+        }
+
+        #{$root}-searchAnimate & {
+            border: rem(1) solid $bright-Navy-blue;
+            position: relative;
+            width: rem(260);
+            height: rem(36);
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            background-size: rem(18);
+            outline: none;
+            transition: 0.5s;
+            z-index: 10;
+            background-color: transparent;
+            padding-left: 0 !important;
+            transform: translateX(-3px);
+
+            &:hover {
+                border: rem(1) solid $bright-Navy-blue;
+            }
+
+            &:focus {
+                overflow: hidden;
+                width: rem(260) !important;
+                cursor: text;
+                background-color: transparent;
+                border-radius: rem(25);
+                background-size: rem(18);
+                border: rem(1) solid $bright-Navy-blue;
+                font-size: rem(14);
+                transition: width 0.5s ease-in-out;
+                position: relative;
+                z-index: 100;
+                padding-left: 12px !important;
+
+                .a-input_input {
+                    width: 230px;
+                }
+            }
+
+
+            @include font-base(20, 28);
+
+            @include mobile-down {
+                padding: rem(12) rem(18);
+                @include font-base(16, 20);
+            }
+
+            @include break-max(rem(1024)) {
+                width: rem(36);
+            }
+
+            &::placeholder {
+                color: $dim-gray;
+            }
+
+            .a-icon {
+                background-color: $bright-Navy-blue;
+            }
+        }
+
+        &::placeholder {
+            font-weight: 400;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        &:focus {
+            border-color: $bright-Navy-blue;
+        }
+    }
+
+    &_wrap_phone_number {
+        border: 1px solid $dark-Gray;
+        background-color: $white;
+        border-radius: rem(8);
+        display: flex;
+
+        &:focus {
+            background-color: #ccc;
+        }
+
+        .a-input_input {
+            border: unset;
+
+        }
+
+        .m-dropdown_phone_number {
+            .a-typography {
+                width: 30px;
+            }
+
+            .m-dropdown_list {
+                left: 0;
+                top: 0;
+                right: unset;
+                position: absolute;
+                min-width: 150px;
+
+                .m-dropdown_item {
+                    width: 100%;
+
+                    div {
+                        width: 100%;
+
+                        .a-typography {
+                            width: max-content;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &_icon {
+        background: transparent;
+        cursor: pointer;
+        @include adjust-flex();
+        border: 0;
+        height: rem(24);
+        width: rem(24);
+        padding: 0;
+        position: absolute;
+        right: rem(8);
+        top: 50%;
+        transform: translate(-12%, -50%);
+
+        .a-icon {
+            margin: auto;
+        }
+    }
+
+    &_label {
+        @include font-base(12, 20);
+        display: block;
+        color: $bright-Navy-blue;
+        margin-bottom: rem(8);
+
+        #{$root}-isError & {
+            color: $sinopia;
+        }
+    }
+
+    &_error {
+        color: $sinopia;
+        display: block;
+        min-height: rem(18);
+        line-height: rem(18);
+        font-size: rem(12);
+        color: $cg-red;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        margin-top: rem(2);
+    }
+
+    &-disabled {
+        #{$root}_input {
+            background: $snow;
+        }
+    }
+
+}

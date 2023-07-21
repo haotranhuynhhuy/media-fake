@@ -1,11 +1,13 @@
 import verifyToken from "../middleware/auth";
 import Post from "../model/Post";
-import { PostTypes } from "../types";
+import { ContextType, PostTypes } from "../types";
 import mongoose from "mongoose";
 
 const postResolvers = {
   Query: {
-    posts: async () => {
+    posts: async (_, __, context: ContextType) => {
+      const user = verifyToken(context);
+      if (!user) return null;
       try {
         const posts = await Post.find().sort({ createAt: -1 });
         return posts;
@@ -13,7 +15,9 @@ const postResolvers = {
         throw new Error(error);
       }
     },
-    post: async (_, args: PostTypes, ___) => {
+    post: async (_, args: PostTypes, context: ContextType) => {
+      const user = verifyToken(context);
+      if (!user) return null;
       try {
         const post = await Post.findById(args.id);
         if (post) {

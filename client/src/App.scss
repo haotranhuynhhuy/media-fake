@@ -1,0 +1,20 @@
+@import 'styles/common';
+// Components
+@import 'components/BaseComponents/Button/index.scss';
+@import 'components/BaseComponents/Icon/index.scss';
+@import 'components/BaseComponents/Input/index.scss';
+@import 'components/BaseComponents/Loading/index.scss';
+@import 'components/BaseComponents/Image/index.scss';
+@import 'components/BaseComponents/Dropdown/index.scss';
+@import 'components/BaseComponents/Link/index.scss';
+@import 'components/BaseComponents/Typography/index.scss';
+@import 'components/BaseComponents/IconTypo/index.scss';
+@import 'components/BaseComponents/CardNotify/index.scss';
+@import 'components/BaseComponents/TextError/index.scss';
+@import 'components/BaseComponents/TextArea/index.scss';
+//Template
+@import 'components/Template/Sidebar/index.scss';
+
+//Pages
+@import 'pages/Authentication/index.scss';
+@import 'pages/Home/index.scss';

@@ -1,0 +1,49 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+// Text Colors
+$white: rgb(255, 255, 255); // #ffffff
+$black: rgb(0, 0, 0);//#00000
+$bright-Navy-blue: rgb(25, 118, 210); //#1976D2
+$dark-Gray: rgb(169, 167, 167);//#A9A7A7
+$dim-gray: rgb(100, 99, 99); //#646363
+$jet: rgb(69, 69, 69); //#454545
+$celestial-blue: rgb(66, 141, 216); //#428dd8
+$sinopia: rgb(206, 49, 0); // #ce3100
+$snow: rgb(252, 249, 247); //#FCF9F7
+$cool-black: rgb(0, 43, 96); // #002b60
+$copper: rgb(179, 131, 58); // #b3833a
+$davys-grey: rgb(89, 89, 89); // #595959
+$gainsboro-sub: rgb(217, 217, 217); //#d9d9d9
+$raisin-black: rgb(38, 38, 38); // #262626
+$taupe-gray: rgb(140, 140, 140); //#8c8c8c
+$green-ryb: rgb(118, 168, 38); // #76a826
+$white-smoke: rgb(246, 246, 246); // #F6F6F6
+$may-green: rgb(95, 158, 69); // #5F9E45
+$columbia-blue: rgb(203, 222, 240); //#cbdef0
+$cg-red: rgb(228, 52, 52);// #e43434
+$dark-gray: rgb(169, 167, 167); //a9a7a7
+$peach-orange: rgb(255, 214, 152); //#ffd698
+$bg-gray: rgb(234, 231, 231);//#EAE7E7
+$gray-blur: rgb(249, 249, 249);//#F9F9F9
+$blue-blur: rgb(153, 188, 223);//#99BCDF
+$light-salmon-pink: rgb(255, 147, 147); //#ff9393
+$blue-sub: rgb(66, 141, 219);//#428ddb
+$jetSub: rgb(50, 50, 50);//#323232
+$bg-gray-blur: rgb(242, 242, 242);//##F2F2F2
+$gainsboro: rgb(222, 222, 222); //#DEDEDE
+$silver: rgb(192, 192, 192); //#C0C0C0
+$anti-flash-white: rgb(242, 242, 242); //#f2f2f2
+$blue-2: rgb(110, 165, 219); //#6ea5db
+$alice-blue: rgb(239, 247, 255);// #EFF7FF
+
+$white-03: rgba($white, 0.3);
+$black-02: rgba($black, 0.2);
+$black-03: rgba($black, 0.3);
+$black-05: rgba($black, 0.5);
+$black-12: rgba($black, 0.12);
+$black-08: rgba($black, 0.8);
+$black-025: rgba($black, 0.25);
+$black-085: rgba($black, 0.85);
+
+$teal-gradient-2: linear-gradient(180deg, #00a8a8 0%, #02747f 100%);
+$gradient-copper: linear-gradient(90deg, #d6bc76 0%, #bf9743 27.08%, #ece58e 51.32%, #d6bc76 67.71%, #b3833a 81.77%, #d7bc76 93.75%);
+$gradient-dark-green: linear-gradient(91.23deg, #002a2f -1.85%, #00383f 27.87%, #336553 82.21%, rgba(53, 142, 110, 0.8) 103.52%);

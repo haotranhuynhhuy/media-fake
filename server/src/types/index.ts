@@ -1,3 +1,5 @@
+import { Request, Response } from "express";
+
 export interface UserType {
   id: string;
   fullname: string;
@@ -36,4 +38,16 @@ export interface CommentType {
   tag: string[];
   reply: string;
   postUserId: string;
+}
+
+export interface ContextType {
+  req: Request;
+  res: Response;
+}
+
+export interface RegisterForm {
+  username: string;
+  password: string;
+  email: string;
+  confirmPassword: string;
 }

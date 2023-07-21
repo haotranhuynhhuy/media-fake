@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import LoginForm from "../components/LoginForm";
-import RegisterForm from "../components/RegisterForm";
 
-const LoginPage = () => {
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { RootState } from "../../store/store";
+import LoginForm from "../../components/Template/LoginForm";
+import RegisterForm from "../../components/Template/RegisterForm";
+
+const Authentication = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  if (isAuthenticated) {
+    return <Navigate to={"/"} />;
+  }
   const [active, setActive] = useState(false);
   const formBox = classNames("form-box", {
     ["active"]: !active,
@@ -55,4 +63,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Authentication;

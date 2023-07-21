@@ -2,8 +2,10 @@ import { UserInputError } from "apollo-server-express";
 import User from "../model/User";
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { PostTypes, UserType } from "../types";
+import { ContextType, PostTypes, RegisterForm, UserType } from "../types";
 import Comment from "../model/Comment";
+import { createToken, sendRefreshToken } from "../util/auth";
+import verifyToken from "../middleware/auth";
 
 const userResolvers = {
   //Query 'user' in 'Post' parent
@@ -26,16 +28,22 @@ const userResolvers = {
     },
   },
   Query: {
-    user: async (_, args: UserType) => await User.findById(args.id),
+    user: async (_, args: UserType, context: ContextType) => {
+      const user = verifyToken(context);
+      if (!user) return null;
+      return await User.findById(args.id);
+    },
   },
   Mutation: {
-    register: async (_, args: UserType) => {
-      const { username, password, email } = args;
+    register: async (_, args: RegisterForm) => {
+      const { username, password, email, confirmPassword } = args;
       //check username or email exist
       const user = await User.findOne({ username });
       const userEmail = await User.findOne({ email });
-      if (user) return new UserInputError("Username is taken");
-      if (userEmail) return new UserInputError("Email is taken");
+      if (user) return new UserInputError("Username has already taken");
+      if (userEmail) return new UserInputError("Email has already taken");
+      if (password.trim() !== confirmPassword.trim())
+        return new UserInputError("Your password does not match");
 
       //All Goods
       const hashedPassword = await argon2.hash(password);
@@ -44,25 +52,18 @@ const userResolvers = {
         password: hashedPassword,
         email,
       });
-      await newUser.save();
+      const res: any = await newUser.save();
 
-      //return token
-      const token = jwt.sign(
-        {
-          id: newUser.id,
-        },
-        process.env.ACCESS_TOKEN_SECRET
-      );
+      //"._doc" is mongodb object to get all data
       return {
-        code: 200,
-        user: newUser,
-        message: "User registration successful",
-        token,
+        ...res._doc,
+        id: res._id,
+        accessToken: createToken("accessToken", res),
       };
     },
-    login: async (_, args: UserType) => {
+    login: async (_, args: UserType, context: ContextType) => {
       const { username, password } = args;
-      const newUser = await User.findOne<UserType>({ username });
+      const newUser: any = await User.findOne<UserType>({ username });
       //check username exist
       if (!newUser) return new UserInputError("Username or password incorrect");
       //check password
@@ -71,19 +72,33 @@ const userResolvers = {
         return new UserInputError("Username or password incorrect");
 
       //return token
-      const token = jwt.sign(
-        {
-          id: newUser.id,
-        },
-        process.env.ACCESS_TOKEN_SECRET
-      );
+      sendRefreshToken(context.res, newUser);
 
+      //"._doc" is mongodb object to get all data
       return {
-        code: 200,
-        user: newUser,
-        message: "User login successfully",
-        token,
+        ...newUser._doc,
+        id: newUser._id,
+        accessToken: createToken("accessToken", newUser),
       };
+    },
+    logout: async (_, __, context: ContextType) => {
+      const user = verifyToken(context);
+      const existingUser = await User.findOne({ _id: user.id });
+      if (!existingUser) {
+        return false;
+      } else {
+        await existingUser.save();
+        context.res.clearCookie(
+          process.env.REFRESH_TOKEN_COOKIE_NAME as string,
+          {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+            path: "/refresh-token",
+          }
+        );
+        return true;
+      }
     },
   },
 };
